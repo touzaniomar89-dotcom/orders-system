@@ -3,19 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WDZ | متجر إلكتروني فاخر</title>
+<title>WDZ | Global Luxury Brand</title>
 
 <!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --black:#0e0e0e;
-  --white:#ffffff;
+  --black:#000000;
+  --dark:#1C1C1C;
   --gold:#C6A75E;
-  --red:#d62828;
-  --gray:#888;
-  --radius:16px;
+  --white:#FFFFFF;
+  --radius:14px;
   --transition:all .4s ease;
 }
 
@@ -26,32 +25,33 @@
 }
 
 body{
-  font-family:'Cairo',sans-serif;
-  background:var(--white);
-  color:var(--black);
+  font-family:'Cairo', sans-serif;
+  background:var(--black);
+  color:var(--white);
   overflow-x:hidden;
 }
 
 .container{
   width:90%;
-  max-width:1200px;
+  max-width:1300px;
   margin:auto;
 }
 
-/* Header */
+/* HEADER */
 header{
   position:fixed;
   width:100%;
   top:0;
-  background:rgba(255,255,255,0.95);
-  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,0.8);
+  backdrop-filter:blur(8px);
   z-index:1000;
-  padding:18px 0;
+  padding:20px 0;
   transition:var(--transition);
 }
 
 header.scrolled{
-  box-shadow:0 10px 40px rgba(0,0,0,0.08);
+  background:#000;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
 }
 
 .nav{
@@ -61,20 +61,17 @@ header.scrolled{
 }
 
 .logo{
-  font-size:24px;
-  font-weight:800;
-  letter-spacing:3px;
-}
-
-.logo span{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:4px;
   color:var(--gold);
 }
 
 .nav a{
+  color:var(--white);
   text-decoration:none;
-  color:var(--black);
-  margin-left:25px;
-  font-weight:500;
+  margin-left:30px;
+  font-weight:600;
   transition:var(--transition);
 }
 
@@ -82,170 +79,193 @@ header.scrolled{
   color:var(--gold);
 }
 
-/* Hero */
+/* HERO */
 .hero{
   height:100vh;
-  background:linear-gradient(to left, rgba(0,0,0,.75), rgba(0,0,0,.4)),
-  url('https://images.unsplash.com/photo-1520975928316-2e4bce5c2f50?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
   display:flex;
   align-items:center;
-  color:var(--white);
-  margin-top:90px;
+  background:linear-gradient(to left, rgba(0,0,0,.9), rgba(0,0,0,.6)),
+  url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  text-align:right;
 }
 
 .hero-content{
-  max-width:600px;
-  animation:fadeUp 1s ease forwards;
+  max-width:700px;
+  animation:fadeUp 1.2s ease forwards;
 }
 
 .hero h1{
-  font-size:44px;
-  font-weight:800;
+  font-size:60px;
+  font-weight:900;
   margin-bottom:20px;
+  line-height:1.3;
 }
 
 .hero p{
-  color:#ddd;
-  margin-bottom:35px;
+  font-size:20px;
+  color:#ccc;
+  margin-bottom:40px;
 }
 
 .btn{
-  padding:14px 35px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:700;
-  transition:var(--transition);
-  display:inline-block;
-  cursor:pointer;
-}
-
-.btn-primary{
+  padding:15px 40px;
   background:var(--gold);
   color:#000;
+  border:none;
+  border-radius:50px;
+  font-weight:800;
+  cursor:pointer;
+  transition:var(--transition);
+  font-size:16px;
 }
 
-.btn-primary:hover{
+.btn:hover{
   transform:translateY(-5px);
-  box-shadow:0 15px 40px rgba(198,167,94,.4);
+  box-shadow:0 20px 50px rgba(198,167,94,.5);
 }
 
-/* Section */
+/* SECTION */
 .section{
-  padding:100px 0;
+  padding:120px 0;
 }
 
 .section-title{
   text-align:center;
-  margin-bottom:60px;
+  margin-bottom:70px;
 }
 
 .section-title h2{
-  font-size:32px;
-  margin-bottom:15px;
+  font-size:40px;
+  font-weight:900;
 }
 
-.section-title p{
-  color:var(--gray);
-}
-
-/* Products */
+/* PRODUCTS */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:40px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:50px;
 }
 
 .card{
-  background:var(--white);
+  background:var(--dark);
   border-radius:var(--radius);
   overflow:hidden;
-  box-shadow:0 10px 40px rgba(0,0,0,0.05);
   transition:var(--transition);
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 .card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 20px 60px rgba(0,0,0,0.1);
+  transform:scale(1.05);
+  box-shadow:0 20px 60px rgba(0,0,0,0.8);
 }
 
 .card img{
   width:100%;
-  height:300px;
+  height:350px;
   object-fit:cover;
 }
 
 .card-content{
-  padding:25px;
+  padding:30px;
 }
 
 .card-content h3{
-  margin-bottom:10px;
+  font-size:22px;
+  margin-bottom:15px;
 }
 
 .price{
-  font-weight:800;
-  color:var(--red);
-  font-size:20px;
-  margin-bottom:20px;
+  color:var(--gold);
+  font-size:22px;
+  font-weight:900;
+  margin-bottom:25px;
 }
 
-.btn-order{
-  background:var(--black);
-  color:var(--white);
+.order-btn{
+  background:var(--gold);
+  color:#000;
+  padding:12px 30px;
   border-radius:30px;
-  padding:12px 25px;
+  font-weight:700;
+  border:none;
+  cursor:pointer;
   transition:var(--transition);
 }
 
-.btn-order:hover{
-  background:var(--gold);
-  color:#000;
+.order-btn:hover{
+  background:#fff;
 }
 
-/* Trust */
+/* BRAND POWER */
+.brand-power{
+  background:linear-gradient(to left, rgba(0,0,0,.9), rgba(0,0,0,.7)),
+  url('https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  text-align:center;
+  padding:150px 20px;
+}
+
+.brand-power h2{
+  font-size:48px;
+  font-weight:900;
+  max-width:900px;
+  margin:auto;
+}
+
+/* TRUST */
 .trust{
-  background:#f7f7f7;
   text-align:center;
 }
 
 .trust-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:40px;
-  margin-top:50px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:50px;
+  margin-top:60px;
 }
 
 .trust-item{
-  padding:20px;
+  background:var(--dark);
+  padding:40px;
+  border-radius:var(--radius);
+  transition:var(--transition);
+}
+
+.trust-item:hover{
+  transform:translateY(-10px);
 }
 
 .trust-item span{
-  font-size:32px;
+  font-size:40px;
   display:block;
-  margin-bottom:15px;
+  margin-bottom:20px;
 }
 
-/* Footer */
+/* FOOTER */
 footer{
-  background:var(--black);
-  color:#aaa;
-  padding:40px 0;
+  background:#000;
+  padding:60px 0;
   text-align:center;
 }
 
 footer h3{
   color:var(--gold);
-  margin-bottom:15px;
+  font-size:28px;
+  margin-bottom:20px;
 }
 
-/* Animations */
+footer p{
+  color:#888;
+  margin:10px 0;
+}
+
 @keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px);}
-  to{opacity:1;transform:translateY(0);}
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
 @media(max-width:768px){
-  .hero h1{font-size:30px;}
+  .hero h1{font-size:36px;}
+  .brand-power h2{font-size:28px;}
 }
 </style>
 </head>
@@ -254,7 +274,7 @@ footer h3{
 
 <header id="header">
   <div class="container nav">
-    <div class="logo">W<span>DZ</span></div>
+    <div class="logo">WDZ</div>
     <div>
       <a href="#">الرئيسية</a>
       <a href="#products">المنتجات</a>
@@ -265,68 +285,71 @@ footer h3{
 
 <section class="hero">
   <div class="container hero-content">
-    <h1>الفخامة ليست خيارًا… بل أسلوب حياة</h1>
-    <p>WDZ تقدم لك منتجات مختارة بعناية، جودة عالية وثقة كاملة في كل عملية شراء.</p>
-    <a href="#products" class="btn btn-primary">تسوق الآن</a>
+    <h1>القوة تبدأ من الداخل…<br> والتميز يحمل اسم WDZ</h1>
+    <p>علامة تجارية عالمية تقدم لك الفخامة، الجودة، والهيبة في كل منتج.</p>
+    <button class="btn" onclick="scrollToProducts()">تسوق الآن</button>
   </div>
 </section>
 
 <section class="section" id="products">
   <div class="container">
     <div class="section-title">
-      <h2>منتجاتنا المميزة</h2>
-      <p>اختر الأفضل… لأنك تستحق الأفضل</p>
+      <h2>منتجات مختارة بعناية</h2>
     </div>
 
     <div class="products">
       <div class="card">
         <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80">
         <div class="card-content">
-          <h3>ساعة فاخرة</h3>
-          <div class="price">1,200 ر.س</div>
-          <button class="btn btn-order" onclick="orderProduct('ساعة فاخرة',1200)">اطلب الآن</button>
+          <h3>ساعة WDZ الفاخرة</h3>
+          <div class="price">1,500 ر.س</div>
+          <button class="order-btn" onclick="orderProduct('ساعة WDZ الفاخرة',1500)">اطلب الآن</button>
         </div>
       </div>
 
       <div class="card">
         <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=800&q=80">
         <div class="card-content">
-          <h3>حقيبة جلد راقية</h3>
-          <div class="price">950 ر.س</div>
-          <button class="btn btn-order" onclick="orderProduct('حقيبة جلد راقية',950)">اطلب الآن</button>
+          <h3>حقيبة WDZ الراقية</h3>
+          <div class="price">1,200 ر.س</div>
+          <button class="order-btn" onclick="orderProduct('حقيبة WDZ الراقية',1200)">اطلب الآن</button>
         </div>
       </div>
 
       <div class="card">
         <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80">
         <div class="card-content">
-          <h3>نظارة أنيقة</h3>
-          <div class="price">650 ر.س</div>
-          <button class="btn btn-order" onclick="orderProduct('نظارة أنيقة',650)">اطلب الآن</button>
+          <h3>نظارة WDZ المميزة</h3>
+          <div class="price">850 ر.س</div>
+          <button class="order-btn" onclick="orderProduct('نظارة WDZ المميزة',850)">اطلب الآن</button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<section class="brand-power">
+  <h2>WDZ ليست مجرد منتجات… إنها أسلوب حياة.</h2>
+</section>
+
 <section class="section trust">
   <div class="container">
     <div class="section-title">
-      <h2>لماذا WDZ؟</h2>
+      <h2>ثقة عالمية</h2>
     </div>
 
     <div class="trust-grid">
       <div class="trust-item">
         <span>🚚</span>
-        <h4>توصيل سريع</h4>
+        <h4>شحن عالمي سريع</h4>
       </div>
       <div class="trust-item">
         <span>🔒</span>
-        <h4>دفع آمن</h4>
+        <h4>دفع آمن 100%</h4>
       </div>
       <div class="trust-item">
         <span>⭐</span>
-        <h4>جودة عالية</h4>
+        <h4>جودة بريميوم</h4>
       </div>
       <div class="trust-item">
         <span>🔄</span>
@@ -339,15 +362,19 @@ footer h3{
 <footer id="contact">
   <h3>WDZ</h3>
   <p>Owner: Touzani Omar</p>
-  <p>contact@email.com</p>
-  <p>© 2026 WDZ - جميع الحقوق محفوظة</p>
+  <p>Instagram | Facebook | Twitter</p>
+  <p>© 2026 WDZ. All Rights Reserved.</p>
 </footer>
 
 <script>
-const header = document.getElementById("header");
+const header=document.getElementById("header");
 window.addEventListener("scroll",()=>{
   header.classList.toggle("scrolled",window.scrollY>50);
 });
+
+function scrollToProducts(){
+  document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
 
 function orderProduct(name,price){
   const product={
@@ -356,7 +383,7 @@ function orderProduct(name,price){
     date:new Date().toLocaleString()
   };
   localStorage.setItem("selectedProduct",JSON.stringify(product));
-  window.location.href="index.html"; // صفحة الطلب
+  window.location.href="index.html";
 }
 </script>
 
