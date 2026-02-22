@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Luxora | تجربة تسوق فاخرة</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WDZ | متجر إلكتروني فاخر</title>
 
 <!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --primary:#111111;
-  --accent:#C6A75E;
-  --light:#F8F8F8;
-  --text:#222;
-  --muted:#777;
-  --radius:14px;
+  --black:#0e0e0e;
+  --white:#ffffff;
+  --gold:#C6A75E;
+  --red:#d62828;
+  --gray:#888;
+  --radius:16px;
   --transition:all .4s ease;
 }
 
@@ -26,10 +26,9 @@
 }
 
 body{
-  font-family:'Cairo', sans-serif;
-  background:#fff;
-  color:var(--text);
-  line-height:1.7;
+  font-family:'Cairo',sans-serif;
+  background:var(--white);
+  color:var(--black);
   overflow-x:hidden;
 }
 
@@ -39,19 +38,20 @@ body{
   margin:auto;
 }
 
+/* Header */
 header{
   position:fixed;
   width:100%;
   top:0;
   background:rgba(255,255,255,0.95);
   backdrop-filter:blur(10px);
-  z-index:999;
-  padding:15px 0;
+  z-index:1000;
+  padding:18px 0;
   transition:var(--transition);
 }
 
 header.scrolled{
-  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+  box-shadow:0 10px 40px rgba(0,0,0,0.08);
 }
 
 .nav{
@@ -62,79 +62,74 @@ header.scrolled{
 
 .logo{
   font-size:24px;
-  font-weight:700;
-  letter-spacing:2px;
+  font-weight:800;
+  letter-spacing:3px;
 }
 
 .logo span{
-  color:var(--accent);
+  color:var(--gold);
 }
 
 .nav a{
   text-decoration:none;
+  color:var(--black);
   margin-left:25px;
-  color:var(--text);
   font-weight:500;
   transition:var(--transition);
 }
 
 .nav a:hover{
-  color:var(--accent);
+  color:var(--gold);
 }
 
+/* Hero */
 .hero{
   height:100vh;
-  background:url('https://images.unsplash.com/photo-1520975928316-2e4bce5c2f50?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+  background:linear-gradient(to left, rgba(0,0,0,.75), rgba(0,0,0,.4)),
+  url('https://images.unsplash.com/photo-1520975928316-2e4bce5c2f50?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
   display:flex;
   align-items:center;
-  position:relative;
-  color:#fff;
-  margin-top:80px;
-}
-
-.hero::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to left, rgba(0,0,0,.6), rgba(0,0,0,.2));
+  color:var(--white);
+  margin-top:90px;
 }
 
 .hero-content{
-  position:relative;
   max-width:600px;
   animation:fadeUp 1s ease forwards;
 }
 
 .hero h1{
-  font-size:42px;
+  font-size:44px;
+  font-weight:800;
   margin-bottom:20px;
 }
 
 .hero p{
-  margin-bottom:30px;
-  color:#eee;
+  color:#ddd;
+  margin-bottom:35px;
 }
 
 .btn{
-  display:inline-block;
   padding:14px 35px;
   border-radius:50px;
   text-decoration:none;
-  font-weight:600;
+  font-weight:700;
   transition:var(--transition);
+  display:inline-block;
   cursor:pointer;
 }
 
 .btn-primary{
-  background:var(--accent);
+  background:var(--gold);
   color:#000;
 }
 
 .btn-primary:hover{
-  transform:translateY(-4px);
-  box-shadow:0 15px 30px rgba(198,167,94,.4);
+  transform:translateY(-5px);
+  box-shadow:0 15px 40px rgba(198,167,94,.4);
 }
 
+/* Section */
 .section{
   padding:100px 0;
 }
@@ -145,126 +140,133 @@ header.scrolled{
 }
 
 .section-title h2{
-  font-size:30px;
+  font-size:32px;
   margin-bottom:15px;
 }
 
 .section-title p{
-  color:var(--muted);
+  color:var(--gray);
 }
 
+/* Products */
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:40px;
 }
 
-.product-card{
-  background:#fff;
+.card{
+  background:var(--white);
   border-radius:var(--radius);
   overflow:hidden;
-  transition:var(--transition);
   box-shadow:0 10px 40px rgba(0,0,0,0.05);
-  opacity:0;
-  transform:translateY(40px);
+  transition:var(--transition);
 }
 
-.product-card.visible{
-  opacity:1;
-  transform:translateY(0);
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.1);
 }
 
-.product-card img{
+.card img{
   width:100%;
   height:300px;
   object-fit:cover;
 }
 
-.product-info{
+.card-content{
   padding:25px;
 }
 
-.product-info h3{
+.card-content h3{
   margin-bottom:10px;
 }
 
 .price{
-  color:var(--accent);
-  font-weight:700;
+  font-weight:800;
+  color:var(--red);
+  font-size:20px;
   margin-bottom:20px;
 }
 
-.product-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 20px 60px rgba(0,0,0,0.1);
+.btn-order{
+  background:var(--black);
+  color:var(--white);
+  border-radius:30px;
+  padding:12px 25px;
+  transition:var(--transition);
 }
 
+.btn-order:hover{
+  background:var(--gold);
+  color:#000;
+}
+
+/* Trust */
 .trust{
-  background:var(--light);
+  background:#f7f7f7;
   text-align:center;
 }
 
-.trust-items{
+.trust-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   gap:40px;
-  margin-top:40px;
+  margin-top:50px;
 }
 
 .trust-item{
   padding:20px;
 }
 
-.trust-item h4{
-  margin-bottom:10px;
+.trust-item span{
+  font-size:32px;
+  display:block;
+  margin-bottom:15px;
 }
 
-.cta{
-  background:var(--primary);
-  color:#fff;
-  text-align:center;
-  padding:80px 20px;
-}
-
-.cta h2{
-  margin-bottom:20px;
-}
-
+/* Footer */
 footer{
+  background:var(--black);
+  color:#aaa;
   padding:40px 0;
   text-align:center;
-  background:#000;
-  color:#aaa;
-  font-size:14px;
 }
 
+footer h3{
+  color:var(--gold);
+  margin-bottom:15px;
+}
+
+/* Animations */
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(30px);}
   to{opacity:1;transform:translateY(0);}
 }
 
 @media(max-width:768px){
-  .hero h1{font-size:32px;}
+  .hero h1{font-size:30px;}
 }
 </style>
 </head>
+
 <body>
 
 <header id="header">
   <div class="container nav">
-    <div class="logo">Lux<span>ora</span></div>
+    <div class="logo">W<span>DZ</span></div>
     <div>
       <a href="#">الرئيسية</a>
       <a href="#products">المنتجات</a>
-      <a href="#contact">تواصل معنا</a>
+      <a href="#contact">تواصل</a>
     </div>
   </div>
 </header>
 
 <section class="hero">
   <div class="container hero-content">
-    <h1>الفخامة تبدأ من التفاصيل</h1>
-    <p>اكتشف مجموعة حصرية مصممة بعناية لتعكس ذوقك الرفيع.</p>
+    <h1>الفخامة ليست خيارًا… بل أسلوب حياة</h1>
+    <p>WDZ تقدم لك منتجات مختارة بعناية، جودة عالية وثقة كاملة في كل عملية شراء.</p>
     <a href="#products" class="btn btn-primary">تسوق الآن</a>
   </div>
 </section>
@@ -273,34 +275,34 @@ footer{
   <div class="container">
     <div class="section-title">
       <h2>منتجاتنا المميزة</h2>
-      <p>اختيارات مختارة بعناية لتمنحك تجربة تسوق استثنائية</p>
+      <p>اختر الأفضل… لأنك تستحق الأفضل</p>
     </div>
 
     <div class="products">
-      <div class="product-card">
+      <div class="card">
         <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80">
-        <div class="product-info">
+        <div class="card-content">
           <h3>ساعة فاخرة</h3>
-          <div class="price">1,250 ر.س</div>
-          <a class="btn btn-primary">أضف إلى السلة</a>
+          <div class="price">1,200 ر.س</div>
+          <button class="btn btn-order" onclick="orderProduct('ساعة فاخرة',1200)">اطلب الآن</button>
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="card">
         <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=800&q=80">
-        <div class="product-info">
+        <div class="card-content">
           <h3>حقيبة جلد راقية</h3>
-          <div class="price">980 ر.س</div>
-          <a class="btn btn-primary">أضف إلى السلة</a>
+          <div class="price">950 ر.س</div>
+          <button class="btn btn-order" onclick="orderProduct('حقيبة جلد راقية',950)">اطلب الآن</button>
         </div>
       </div>
 
-      <div class="product-card">
+      <div class="card">
         <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80">
-        <div class="product-info">
+        <div class="card-content">
           <h3>نظارة أنيقة</h3>
           <div class="price">650 ر.س</div>
-          <a class="btn btn-primary">أضف إلى السلة</a>
+          <button class="btn btn-order" onclick="orderProduct('نظارة أنيقة',650)">اطلب الآن</button>
         </div>
       </div>
     </div>
@@ -310,52 +312,52 @@ footer{
 <section class="section trust">
   <div class="container">
     <div class="section-title">
-      <h2>لماذا نحن؟</h2>
-      <p>نضمن لك تجربة آمنة واحترافية</p>
+      <h2>لماذا WDZ؟</h2>
     </div>
 
-    <div class="trust-items">
+    <div class="trust-grid">
       <div class="trust-item">
-        <h4>شحن سريع</h4>
-        <p>توصيل خلال 48 ساعة لجميع المدن</p>
+        <span>🚚</span>
+        <h4>توصيل سريع</h4>
       </div>
       <div class="trust-item">
-        <h4>دفع آمن 100%</h4>
-        <p>جميع العمليات مشفرة وآمنة بالكامل</p>
+        <span>🔒</span>
+        <h4>دفع آمن</h4>
       </div>
       <div class="trust-item">
-        <h4>ضمان استرجاع</h4>
-        <p>استرجاع خلال 14 يوم بدون تعقيد</p>
+        <span>⭐</span>
+        <h4>جودة عالية</h4>
+      </div>
+      <div class="trust-item">
+        <span>🔄</span>
+        <h4>استرجاع سهل</h4>
       </div>
     </div>
   </div>
 </section>
 
-<section class="cta">
-  <h2>ابدأ تجربتك الفاخرة اليوم</h2>
-  <a class="btn btn-primary">اطلب الآن</a>
-</section>
-
 <footer id="contact">
-  © 2026 Luxora. جميع الحقوق محفوظة.
+  <h3>WDZ</h3>
+  <p>Owner: Touzani Omar</p>
+  <p>contact@email.com</p>
+  <p>© 2026 WDZ - جميع الحقوق محفوظة</p>
 </footer>
 
 <script>
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 50);
+const header = document.getElementById("header");
+window.addEventListener("scroll",()=>{
+  header.classList.toggle("scrolled",window.scrollY>50);
 });
 
-const cards = document.querySelectorAll('.product-card');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
-    }
-  });
-},{threshold:0.2});
-
-cards.forEach(card => observer.observe(card));
+function orderProduct(name,price){
+  const product={
+    name:name,
+    price:price,
+    date:new Date().toLocaleString()
+  };
+  localStorage.setItem("selectedProduct",JSON.stringify(product));
+  window.location.href="index.html"; // صفحة الطلب
+}
 </script>
 
 </body>
