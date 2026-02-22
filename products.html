@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WDZ | Global Luxury Brand</title>
+<title>WDZ | Elite Global Brand</title>
 
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -11,11 +11,10 @@
 <style>
 :root{
   --black:#000000;
-  --dark:#1C1C1C;
+  --graphite:#1A1A1A;
   --gold:#C6A75E;
   --white:#FFFFFF;
-  --radius:14px;
-  --transition:all .4s ease;
+  --transition:all .45s cubic-bezier(.25,.8,.25,1);
 }
 
 *{
@@ -24,34 +23,38 @@
   box-sizing:border-box;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-  font-family:'Cairo', sans-serif;
+  font-family:'Cairo',sans-serif;
   background:var(--black);
   color:var(--white);
   overflow-x:hidden;
 }
 
+/* Layout */
 .container{
   width:90%;
-  max-width:1300px;
+  max-width:1400px;
   margin:auto;
 }
 
-/* HEADER */
+/* Header */
 header{
   position:fixed;
-  width:100%;
   top:0;
-  background:rgba(0,0,0,0.8);
+  width:100%;
+  background:rgba(0,0,0,0.85);
   backdrop-filter:blur(8px);
+  padding:22px 0;
   z-index:1000;
-  padding:20px 0;
   transition:var(--transition);
 }
 
 header.scrolled{
-  background:#000;
-  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  box-shadow:0 10px 40px rgba(0,0,0,0.7);
 }
 
 .nav{
@@ -70,8 +73,8 @@ header.scrolled{
 .nav a{
   color:var(--white);
   text-decoration:none;
-  margin-left:30px;
-  font-weight:600;
+  margin-left:35px;
+  font-weight:700;
   transition:var(--transition);
 }
 
@@ -84,84 +87,76 @@ header.scrolled{
   height:100vh;
   display:flex;
   align-items:center;
-  background:linear-gradient(to left, rgba(0,0,0,.9), rgba(0,0,0,.6)),
-  url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-  text-align:right;
+  background:
+  linear-gradient(to left, rgba(0,0,0,.92), rgba(0,0,0,.65)),
+  url('https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1700&q=80') center/cover no-repeat;
 }
 
 .hero-content{
-  max-width:700px;
-  animation:fadeUp 1.2s ease forwards;
+  max-width:800px;
+  animation:fadeIn 1.2s ease forwards;
 }
 
 .hero h1{
-  font-size:60px;
+  font-size:64px;
   font-weight:900;
-  margin-bottom:20px;
   line-height:1.3;
+  margin-bottom:25px;
 }
 
 .hero p{
   font-size:20px;
-  color:#ccc;
+  color:#cccccc;
   margin-bottom:40px;
 }
 
 .btn{
-  padding:15px 40px;
   background:var(--gold);
   color:#000;
-  border:none;
+  padding:16px 45px;
   border-radius:50px;
-  font-weight:800;
+  font-weight:900;
+  border:none;
   cursor:pointer;
   transition:var(--transition);
   font-size:16px;
 }
 
 .btn:hover{
-  transform:translateY(-5px);
-  box-shadow:0 20px 50px rgba(198,167,94,.5);
+  transform:translateY(-6px);
+  box-shadow:0 25px 60px rgba(198,167,94,.5);
 }
 
-/* SECTION */
+/* Section */
 .section{
-  padding:120px 0;
+  padding:130px 0;
 }
 
-.section-title{
-  text-align:center;
-  margin-bottom:70px;
-}
-
-.section-title h2{
-  font-size:40px;
-  font-weight:900;
-}
-
-/* PRODUCTS */
+/* Featured Products */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:50px;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:60px;
 }
 
 .card{
-  background:var(--dark);
-  border-radius:var(--radius);
+  background:var(--graphite);
+  border-radius:16px;
   overflow:hidden;
   transition:var(--transition);
-  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  box-shadow:0 15px 40px rgba(0,0,0,.6);
+  border:1px solid transparent;
 }
 
 .card:hover{
-  transform:scale(1.05);
-  box-shadow:0 20px 60px rgba(0,0,0,0.8);
+  transform:scale(1.06);
+  border:1px solid var(--gold);
+  box-shadow:0 25px 70px rgba(198,167,94,.4);
 }
 
 .card img{
   width:100%;
-  height:350px;
+  height:380px;
   object-fit:cover;
 }
 
@@ -176,7 +171,7 @@ header.scrolled{
 
 .price{
   color:var(--gold);
-  font-size:22px;
+  font-size:24px;
   font-weight:900;
   margin-bottom:25px;
 }
@@ -185,9 +180,9 @@ header.scrolled{
   background:var(--gold);
   color:#000;
   padding:12px 30px;
-  border-radius:30px;
-  font-weight:700;
   border:none;
+  border-radius:30px;
+  font-weight:800;
   cursor:pointer;
   transition:var(--transition);
 }
@@ -196,76 +191,74 @@ header.scrolled{
   background:#fff;
 }
 
-/* BRAND POWER */
-.brand-power{
-  background:linear-gradient(to left, rgba(0,0,0,.9), rgba(0,0,0,.7)),
-  url('https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+/* Brand Statement */
+.statement{
+  background:var(--graphite);
   text-align:center;
   padding:150px 20px;
 }
 
-.brand-power h2{
-  font-size:48px;
+.statement h2{
+  font-size:52px;
   font-weight:900;
   max-width:900px;
   margin:auto;
 }
 
-/* TRUST */
-.trust{
-  text-align:center;
-}
-
+/* Trust */
 .trust-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:50px;
   margin-top:60px;
+  text-align:center;
 }
 
 .trust-item{
-  background:var(--dark);
   padding:40px;
-  border-radius:var(--radius);
+  background:var(--graphite);
+  border-radius:14px;
   transition:var(--transition);
 }
 
 .trust-item:hover{
-  transform:translateY(-10px);
+  transform:translateY(-12px);
 }
 
 .trust-item span{
-  font-size:40px;
+  font-size:42px;
   display:block;
   margin-bottom:20px;
 }
 
-/* FOOTER */
+/* Footer */
 footer{
-  background:#000;
-  padding:60px 0;
+  padding:70px 0;
   text-align:center;
+  background:#000;
 }
 
 footer h3{
   color:var(--gold);
-  font-size:28px;
+  font-size:30px;
   margin-bottom:20px;
+  letter-spacing:4px;
 }
 
 footer p{
-  color:#888;
-  margin:10px 0;
+  color:#777;
+  margin:8px 0;
 }
 
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(40px);}
+/* Animations */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(50px);}
   to{opacity:1; transform:translateY(0);}
 }
 
 @media(max-width:768px){
-  .hero h1{font-size:36px;}
-  .brand-power h2{font-size:28px;}
+  .hero h1{font-size:38px;}
+  .statement h2{font-size:30px;}
 }
 </style>
 </head>
@@ -285,59 +278,53 @@ footer p{
 
 <section class="hero">
   <div class="container hero-content">
-    <h1>القوة تبدأ من الداخل…<br> والتميز يحمل اسم WDZ</h1>
-    <p>علامة تجارية عالمية تقدم لك الفخامة، الجودة، والهيبة في كل منتج.</p>
-    <button class="btn" onclick="scrollToProducts()">تسوق الآن</button>
+    <h1>WDZ ليست مجرد علامة تجارية… إنها قوة.</h1>
+    <p>نصنع منتجات للنخبة. لمن يفهم معنى الطموح، والسيطرة، والتميز العالمي.</p>
+    <button class="btn" onclick="document.getElementById('products').scrollIntoView()">ابدأ الآن</button>
   </div>
 </section>
 
 <section class="section" id="products">
   <div class="container">
-    <div class="section-title">
-      <h2>منتجات مختارة بعناية</h2>
-    </div>
-
     <div class="products">
+
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=80">
         <div class="card-content">
-          <h3>ساعة WDZ الفاخرة</h3>
-          <div class="price">1,500 ر.س</div>
-          <button class="order-btn" onclick="orderProduct('ساعة WDZ الفاخرة',1500)">اطلب الآن</button>
+          <h3>ساعة WDZ النخبوية</h3>
+          <div class="price">1,800 ر.س</div>
+          <button class="order-btn" onclick="orderProduct('ساعة WDZ النخبوية',1800)">اطلب الآن</button>
         </div>
       </div>
 
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=900&q=80">
         <div class="card-content">
-          <h3>حقيبة WDZ الراقية</h3>
-          <div class="price">1,200 ر.س</div>
-          <button class="order-btn" onclick="orderProduct('حقيبة WDZ الراقية',1200)">اطلب الآن</button>
+          <h3>حقيبة WDZ الفاخرة</h3>
+          <div class="price">1,450 ر.س</div>
+          <button class="order-btn" onclick="orderProduct('حقيبة WDZ الفاخرة',1450)">اطلب الآن</button>
         </div>
       </div>
 
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80">
         <div class="card-content">
-          <h3>نظارة WDZ المميزة</h3>
-          <div class="price">850 ر.س</div>
-          <button class="order-btn" onclick="orderProduct('نظارة WDZ المميزة',850)">اطلب الآن</button>
+          <h3>نظارة WDZ الاحترافية</h3>
+          <div class="price">950 ر.س</div>
+          <button class="order-btn" onclick="orderProduct('نظارة WDZ الاحترافية',950)">اطلب الآن</button>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<section class="brand-power">
-  <h2>WDZ ليست مجرد منتجات… إنها أسلوب حياة.</h2>
+<section class="statement">
+  <h2>التميز ليس خياراً… إنه معيار WDZ.</h2>
 </section>
 
-<section class="section trust">
+<section class="section">
   <div class="container">
-    <div class="section-title">
-      <h2>ثقة عالمية</h2>
-    </div>
-
     <div class="trust-grid">
       <div class="trust-item">
         <span>🚚</span>
@@ -345,15 +332,15 @@ footer p{
       </div>
       <div class="trust-item">
         <span>🔒</span>
-        <h4>دفع آمن 100%</h4>
+        <h4>دفع مشفر وآمن</h4>
       </div>
       <div class="trust-item">
         <span>⭐</span>
-        <h4>جودة بريميوم</h4>
+        <h4>مواد فائقة الجودة</h4>
       </div>
       <div class="trust-item">
         <span>🔄</span>
-        <h4>استرجاع سهل</h4>
+        <h4>استرجاع خلال 7 أيام</h4>
       </div>
     </div>
   </div>
@@ -361,7 +348,7 @@ footer p{
 
 <footer id="contact">
   <h3>WDZ</h3>
-  <p>Owner: Touzani Omar</p>
+  <p>Founder: Touzani Omar</p>
   <p>Instagram | Facebook | Twitter</p>
   <p>© 2026 WDZ. All Rights Reserved.</p>
 </footer>
@@ -371,10 +358,6 @@ const header=document.getElementById("header");
 window.addEventListener("scroll",()=>{
   header.classList.toggle("scrolled",window.scrollY>50);
 });
-
-function scrollToProducts(){
-  document.getElementById("products").scrollIntoView({behavior:"smooth"});
-}
 
 function orderProduct(name,price){
   const product={
