@@ -2,65 +2,118 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>متجري</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>متجري الإلكتروني</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+
 <style>
 body{
-    font-family: Arial;
     margin:0;
+    font-family:'Cairo', sans-serif;
     background:#f4f6f9;
 }
 
+/* Header */
 header{
-    background:black;
+    background:#111;
     color:white;
-    padding:15px;
+    padding:20px;
     text-align:center;
     font-size:22px;
+    font-weight:800;
+    letter-spacing:1px;
 }
 
+/* Hero Section */
+.hero{
+    text-align:center;
+    padding:40px 20px;
+}
+.hero h1{
+    margin:0;
+    font-size:32px;
+}
+.hero p{
+    color:#666;
+}
+
+/* Product Grid */
 .container{
     display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-    padding:30px;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+    padding:40px;
 }
 
+/* Product Card */
 .card{
     background:white;
-    border-radius:15px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.1);
-    padding:15px;
-    text-align:center;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    overflow:hidden;
     transition:0.3s;
 }
 
 .card:hover{
-    transform:translateY(-5px);
+    transform:translateY(-8px);
 }
 
 .card img{
     width:100%;
-    border-radius:10px;
+    height:250px;
+    object-fit:cover;
+}
+
+.card-body{
+    padding:20px;
+    text-align:center;
+}
+
+.card h3{
+    margin:10px 0;
+    font-size:20px;
 }
 
 .price{
-    color:red;
-    font-weight:bold;
-    font-size:18px;
+    color:#e60023;
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:15px;
 }
 
+/* Button */
 button{
-    background:black;
+    background:#111;
     color:white;
     border:none;
-    padding:10px;
+    padding:12px;
     width:100%;
-    border-radius:8px;
+    border-radius:10px;
+    font-size:16px;
     cursor:pointer;
+    transition:0.3s;
 }
 
 button:hover{
-    background:#333;
+    background:#e60023;
+}
+
+/* Trust Section */
+.trust{
+    background:white;
+    padding:40px 20px;
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    flex-wrap:wrap;
+    text-align:center;
+}
+
+.trust div{
+    font-weight:600;
+    color:#444;
 }
 </style>
 </head>
@@ -68,27 +121,43 @@ button:hover{
 
 <header>🛍️ متجري الإلكتروني</header>
 
+<section class="hero">
+    <h1>أفضل المنتجات بأفضل الأسعار</h1>
+    <p>توصيل سريع • جودة عالية • رضا مضمون</p>
+</section>
+
 <div class="container">
 
 <div class="card">
-    <img src="https://via.placeholder.com/300">
-    <h3>منتج 1</h3>
-    <p class="price">120 درهم</p>
-    <button onclick="orderProduct('منتج 1','120','https://via.placeholder.com/300','وصف المنتج')">
-        اطلب الآن
-    </button>
+    <img src="https://via.placeholder.com/400x300">
+    <div class="card-body">
+        <h3>منتج 1</h3>
+        <div class="price">120 درهم</div>
+        <button onclick="orderProduct('منتج 1','120','https://via.placeholder.com/400x300','منتج رائع')">
+            اطلب الآن
+        </button>
+    </div>
 </div>
 
 <div class="card">
-    <img src="https://via.placeholder.com/300">
-    <h3>منتج 2</h3>
-    <p class="price">200 درهم</p>
-    <button onclick="orderProduct('منتج 2','200','https://via.placeholder.com/300','منتج رائع')">
-        اطلب الآن
-    </button>
+    <img src="https://via.placeholder.com/400x300">
+    <div class="card-body">
+        <h3>منتج 2</h3>
+        <div class="price">200 درهم</div>
+        <button onclick="orderProduct('منتج 2','200','https://via.placeholder.com/400x300','جودة عالية')">
+            اطلب الآن
+        </button>
+    </div>
 </div>
 
 </div>
+
+<section class="trust">
+    <div>🚚 توصيل سريع</div>
+    <div>🔒 دفع آمن</div>
+    <div>⭐ تقييمات ممتازة</div>
+    <div>🔄 استرجاع خلال 7 أيام</div>
+</section>
 
 <script>
 function orderProduct(name,price,image,description){
