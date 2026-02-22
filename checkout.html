@@ -1,0 +1,17 @@
+<img id="pImage">
+<h2 id="pName"></h2>
+<p id="pPrice"></p>
+<p id="pDesc"></p>
+
+<script>
+let product = JSON.parse(localStorage.getItem("product"));
+
+if(product){
+  document.getElementById("pImage").src = product.image;
+  document.getElementById("pName").innerText = product.name;
+  document.getElementById("pPrice").innerText = product.price + " درهم";
+  document.getElementById("pDesc").innerText = product.description;
+}else{
+  document.body.innerHTML = "<h2>لا يوجد منتج مختار</h2>";
+}
+</script>
