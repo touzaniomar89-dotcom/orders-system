@@ -9,11 +9,11 @@
 
 <style>
 :root{
-  --bg:#0A0A0A;
-  --section:#121212;
+  --black:#0A0A0A;
+  --dark:#121212;
   --green:#00FF66;
   --white:#FFFFFF;
-  --gray:#9E9E9E;
+  --gray:#A0A0A0;
   --transition:all .35s ease;
 }
 
@@ -23,9 +23,13 @@
   box-sizing:border-box;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:'Cairo',sans-serif;
-  background:var(--bg);
+  background:var(--black);
   color:var(--white);
   overflow-x:hidden;
 }
@@ -37,7 +41,7 @@ body{
 }
 
 section{
-  padding:120px 0;
+  padding:110px 0;
 }
 
 /* ================= HERO ================= */
@@ -47,7 +51,8 @@ section{
   align-items:center;
   justify-content:center;
   text-align:center;
-  background:radial-gradient(circle at center, #111 0%, #0A0A0A 70%);
+  background:radial-gradient(circle at top,#151515 0%,#0A0A0A 70%);
+  animation:fadeIn 1.5s ease;
 }
 
 .hero h1{
@@ -58,8 +63,8 @@ section{
 }
 
 .hero p{
-  color:var(--gray);
   font-size:20px;
+  color:var(--gray);
   margin-bottom:40px;
 }
 
@@ -77,19 +82,19 @@ section{
 .glow-btn:hover{
   background:var(--green);
   color:#000;
-  box-shadow:0 0 25px rgba(0,255,102,1);
   transform:translateY(-4px);
+  box-shadow:0 0 30px rgba(0,255,102,1);
 }
 
 /* ================= PRODUCTS ================= */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:50px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:45px;
 }
 
 .card{
-  background:var(--section);
+  background:var(--dark);
   border-radius:8px;
   overflow:hidden;
   transition:var(--transition);
@@ -104,7 +109,7 @@ section{
 
 .card img{
   width:100%;
-  height:350px;
+  height:360px;
   object-fit:cover;
 }
 
@@ -140,26 +145,19 @@ section{
   box-shadow:0 0 20px rgba(0,255,102,1);
 }
 
-/* ================= BRAND STATEMENT ================= */
+/* ================= BRAND MESSAGE ================= */
 .statement{
-  background:var(--section);
+  background:var(--dark);
   text-align:center;
 }
 
 .statement h2{
   font-size:48px;
   font-weight:900;
-  margin-bottom:20px;
 }
 
-.statement p{
-  color:var(--gray);
-  max-width:600px;
-  margin:auto;
-}
-
-/* ================= TRUST ================= */
-.trust-grid{
+/* ================= WHY WDZ ================= */
+.why-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:40px;
@@ -167,19 +165,19 @@ section{
   margin-top:60px;
 }
 
-.trust-item{
+.why-item{
   padding:30px;
-  background:var(--section);
+  background:var(--dark);
   border-radius:6px;
   transition:var(--transition);
 }
 
-.trust-item:hover{
+.why-item:hover{
   border:1px solid var(--green);
   box-shadow:0 0 20px rgba(0,255,102,.4);
 }
 
-.trust-item span{
+.why-item span{
   font-size:34px;
   display:block;
   margin-bottom:15px;
@@ -203,6 +201,12 @@ footer p{
   font-size:14px;
 }
 
+/* ================= ANIMATIONS ================= */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
 /* ================= RESPONSIVE ================= */
 @media(max-width:768px){
   .hero h1{
@@ -222,12 +226,12 @@ footer p{
   <div>
     <h1>WDZ STREET</h1>
     <p>Own Your Energy.</p>
-    <button class="glow-btn" onclick="document.getElementById('products').scrollIntoView()">تسوق الآن</button>
+    <button class="glow-btn" onclick="document.getElementById('collection').scrollIntoView()">تسوق الآن</button>
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section id="products">
+<!-- FEATURED COLLECTION -->
+<section id="collection">
   <div class="container">
     <div class="products">
 
@@ -249,44 +253,34 @@ footer p{
         </div>
       </div>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1593032465171-8b2b2c9d19d1?auto=format&fit=crop&w=900&q=80">
-        <div class="card-content">
-          <h3>WDZ Oversized Hoodie</h3>
-          <div class="price">520 ر.س</div>
-          <button class="order-btn" onclick="orderProduct('WDZ Oversized Hoodie',520)">اطلب الآن</button>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- STATEMENT -->
+<!-- BRAND MESSAGE -->
 <section class="statement">
   <div class="container">
     <h2>Not Just Clothing. It's WDZ.</h2>
-    <p>تصميم مستقبلي. طاقة حضرية. جودة فاخرة تعكس هوية جريئة.</p>
   </div>
 </section>
 
-<!-- TRUST -->
+<!-- WHY WDZ -->
 <section>
   <div class="container">
-    <div class="trust-grid">
-      <div class="trust-item">
+    <div class="why-grid">
+      <div class="why-item">
+        <span>⭐</span>
+        <p>Premium Fabric</p>
+      </div>
+      <div class="why-item">
+        <span>🔥</span>
+        <p>Limited Street Collection</p>
+      </div>
+      <div class="why-item">
         <span>🚚</span>
         <p>Fast Shipping</p>
       </div>
-      <div class="trust-item">
-        <span>🔒</span>
-        <p>Secure Payment</p>
-      </div>
-      <div class="trust-item">
-        <span>⭐</span>
-        <p>Premium Fabric Quality</p>
-      </div>
-      <div class="trust-item">
+      <div class="why-item">
         <span>🔄</span>
         <p>Easy Returns</p>
       </div>
