@@ -1,307 +1,607 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WDZ STREET</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDZ STREET - Own Your Energy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
+        :root {
+            --deep-black: #0A0A0A;
+            --dark-grey: #121212;
+            --neon-green: #00FF66;
+            --white-text: #FFFFFF;
+            --soft-grey-text: #A0A0A0;
+        }
 
-<style>
-:root{
-  --black:#0A0A0A;
-  --dark:#121212;
-  --green:#00FF66;
-  --white:#FFFFFF;
-  --gray:#A0A0A0;
-  --transition:all .35s ease;
-}
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--deep-black);
+            color: var(--white-text);
+            line-height: 1.6;
+            direction: rtl; /* RTL Support */
+            text-align: right; /* RTL Support */
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+        }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-html{
-  scroll-behavior:smooth;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-body{
-  font-family:'Cairo',sans-serif;
-  background:var(--black);
-  color:var(--white);
-  overflow-x:hidden;
-}
+        /* Utility Classes */
+        .text-neon {
+            color: var(--neon-green);
+        }
 
-.container{
-  width:90%;
-  max-width:1300px;
-  margin:auto;
-}
+        .text-white {
+            color: var(--white-text);
+        }
 
-section{
-  padding:110px 0;
-}
+        .text-soft-grey {
+            color: var(--soft-grey-text);
+        }
 
-/* ================= HERO ================= */
-.hero{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  background:radial-gradient(circle at top,#151515 0%,#0A0A0A 70%);
-  animation:fadeIn 1.5s ease;
-}
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--neon-green);
+            color: var(--deep-black); /* Text color inside neon button should be contrasting */
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.5); /* Initial glow */
+        }
 
-.hero h1{
-  font-size:90px;
-  font-weight:900;
-  letter-spacing:4px;
-  margin-bottom:20px;
-}
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.8), 0 0 40px rgba(0, 255, 102, 0.6);
+        }
 
-.hero p{
-  font-size:20px;
-  color:var(--gray);
-  margin-bottom:40px;
-}
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x1080/0A0A0A/121212?text=WDZ+FUTURE'); /* Cinematic Placeholder */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            animation: fadeIn 2s ease-out forwards;
+            opacity: 0;
+            padding: 20px; /* Ensure spacing on small screens */
+        }
 
-.glow-btn{
-  background:transparent;
-  border:2px solid var(--green);
-  color:var(--green);
-  padding:15px 45px;
-  font-weight:800;
-  cursor:pointer;
-  transition:var(--transition);
-  box-shadow:0 0 15px rgba(0,255,102,.5);
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.glow-btn:hover{
-  background:var(--green);
-  color:#000;
-  transform:translateY(-4px);
-  box-shadow:0 0 30px rgba(0,255,102,1);
-}
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+        }
 
-/* ================= PRODUCTS ================= */
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:45px;
-}
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--white-text);
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+            animation: textFadeIn 2.5s ease-out forwards;
+            opacity: 0;
+            animation-delay: 0.5s;
+        }
+         @keyframes textFadeIn {
+            from { opacity: 0; transform: translateY(30px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
 
-.card{
-  background:var(--dark);
-  border-radius:8px;
-  overflow:hidden;
-  transition:var(--transition);
-  border:1px solid #1d1d1d;
-}
+        .hero p {
+            font-size: 1.8rem;
+            color: var(--soft-grey-text);
+            margin-bottom: 40px;
+             animation: textFadeIn 2.5s ease-out forwards;
+            opacity: 0;
+            animation-delay: 1s;
+        }
 
-.card:hover{
-  transform:scale(1.05);
-  border:1px solid var(--green);
-  box-shadow:0 0 25px rgba(0,255,102,.4);
-}
+        .hero .btn {
+            animation: textFadeIn 2.5s ease-out forwards;
+            opacity: 0;
+            animation-delay: 1.5s;
+        }
 
-.card img{
-  width:100%;
-  height:360px;
-  object-fit:cover;
-}
+        /* Featured Collection */
+        .featured-collection {
+            padding: 100px 0;
+            background-color: var(--dark-grey);
+        }
 
-.card-content{
-  padding:25px;
-}
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 80px;
+            color: var(--white-text);
+            position: relative;
+            display: inline-block; /* For the underline */
+            padding-bottom: 20px;
+            text-shadow: 0 0 8px rgba(0, 255, 102, 0.3);
+        }
 
-.card-content h3{
-  font-size:20px;
-  margin-bottom:12px;
-}
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green);
+            border-radius: 2px;
+        }
 
-.price{
-  color:var(--green);
-  font-weight:800;
-  margin-bottom:20px;
-}
 
-.order-btn{
-  width:100%;
-  background:transparent;
-  border:2px solid var(--green);
-  color:var(--green);
-  padding:10px;
-  font-weight:700;
-  cursor:pointer;
-  transition:var(--transition);
-}
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
 
-.order-btn:hover{
-  background:var(--green);
-  color:#000;
-  box-shadow:0 0 20px rgba(0,255,102,1);
-}
+        .product-card {
+            background-color: var(--deep-black);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            padding-bottom: 20px;
+        }
 
-/* ================= BRAND MESSAGE ================= */
-.statement{
-  background:var(--dark);
-  text-align:center;
-}
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 0 2px transparent; /* Initial transparent border */
+            transition: box-shadow 0.3s ease;
+            pointer-events: none; /* Allow interaction with content */
+        }
 
-.statement h2{
-  font-size:48px;
-  font-weight:900;
-}
+        .product-card:hover {
+            transform: scale(1.03) translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 102, 0.6);
+        }
 
-/* ================= WHY WDZ ================= */
-.why-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:40px;
-  text-align:center;
-  margin-top:60px;
-}
+        .product-card:hover::before {
+            box-shadow: 0 0 0 2px var(--neon-green); /* Neon border glow on hover */
+        }
 
-.why-item{
-  padding:30px;
-  background:var(--dark);
-  border-radius:6px;
-  transition:var(--transition);
-}
+        .product-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
 
-.why-item:hover{
-  border:1px solid var(--green);
-  box-shadow:0 0 20px rgba(0,255,102,.4);
-}
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
 
-.why-item span{
-  font-size:34px;
-  display:block;
-  margin-bottom:15px;
-}
+        .product-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--white-text);
+        }
 
-/* ================= FOOTER ================= */
-footer{
-  text-align:center;
-  padding:60px 0;
-  border-top:1px solid #1f1f1f;
-}
+        .product-card .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            margin-bottom: 20px;
+            text-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
+        }
 
-footer h3{
-  color:var(--green);
-  font-size:28px;
-  margin-bottom:10px;
-}
+        .product-card .btn {
+            font-size: 1.1rem;
+            padding: 10px 30px;
+        }
 
-footer p{
-  color:var(--gray);
-  font-size:14px;
-}
+        /* Brand Message Section */
+        .brand-message {
+            padding: 150px 0;
+            background-color: var(--deep-black);
+            text-align: center;
+        }
 
-/* ================= ANIMATIONS ================= */
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(30px);}
-  to{opacity:1; transform:translateY(0);}
-}
+        .brand-message h2 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--white-text);
+            max-width: 900px;
+            margin: 0 auto;
+            text-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
+        }
 
-/* ================= RESPONSIVE ================= */
-@media(max-width:768px){
-  .hero h1{
-    font-size:50px;
-  }
-  .statement h2{
-    font-size:30px;
-  }
-}
-</style>
+        /* Why WDZ Section */
+        .why-wdz {
+            padding: 100px 0;
+            background-color: var(--dark-grey);
+        }
+
+        .why-wdz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .why-wdz-item {
+            background-color: var(--deep-black);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: var(--soft-grey-text);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .why-wdz-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 255, 102, 0.5);
+        }
+
+        .why-wdz-item .icon {
+            font-size: 3rem; /* Placeholder for icon */
+            color: var(--neon-green);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.6);
+        }
+
+        .why-wdz-item h3 {
+            font-size: 1.8rem;
+            color: var(--white-text);
+            margin-bottom: 10px;
+        }
+
+        .why-wdz-item p {
+            font-size: 1.1rem;
+            color: var(--soft-grey-text);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--deep-black);
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 102, 0.2);
+        }
+
+        .footer .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(0, 255, 102, 0.8);
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 15px;
+            font-size: 1.8rem;
+            color: var(--soft-grey-text);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--neon-green);
+            transform: scale(1.2) translateY(-3px);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            color: var(--soft-grey-text);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 3rem;
+                margin-bottom: 60px;
+            }
+
+            .collection-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .product-card img {
+                height: 300px;
+            }
+
+            .brand-message h2 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 80vh;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.3rem;
+            }
+
+            .hero .btn {
+                font-size: 1rem;
+                padding: 12px 30px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 40px;
+            }
+
+            .featured-collection, .why-wdz {
+                padding: 80px 0;
+            }
+
+            .brand-message {
+                padding: 100px 0;
+            }
+
+            .brand-message h2 {
+                font-size: 2.8rem;
+            }
+
+            .footer {
+                padding: 40px 0;
+            }
+
+            .footer .logo {
+                font-size: 2rem;
+            }
+
+            .social-links a {
+                font-size: 1.5rem;
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+            }
+
+            .hero .btn {
+                 font-size: 0.9rem;
+                 padding: 10px 25px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .collection-grid {
+                grid-template-columns: 1fr; /* Stack on small screens */
+                gap: 30px;
+            }
+
+            .product-card h3 {
+                font-size: 1.6rem;
+            }
+
+            .product-card .price {
+                font-size: 1.3rem;
+            }
+
+            .brand-message h2 {
+                font-size: 2.2rem;
+            }
+
+            .why-wdz-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+             .why-wdz-item h3 {
+                font-size: 1.5rem;
+             }
+
+            .footer .logo {
+                font-size: 1.8rem;
+            }
+
+            .social-links a {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <h1>WDZ STREET</h1>
-    <p>Own Your Energy.</p>
-    <button class="glow-btn" onclick="document.getElementById('collection').scrollIntoView()">تسوق الآن</button>
-  </div>
-</section>
-
-<!-- FEATURED COLLECTION -->
-<section id="collection">
-  <div class="container">
-    <div class="products">
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1520975922203-bcc6c90a7c74?auto=format&fit=crop&w=900&q=80">
-        <div class="card-content">
-          <h3>WDZ Neon Hoodie</h3>
-          <div class="price">450 ر.س</div>
-          <button class="order-btn" onclick="orderProduct('WDZ Neon Hoodie',450)">اطلب الآن</button>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="text-white">WDZ STREET</h1>
+            <p class="text-soft-grey">Own Your Energy.</p>
+            <a href="#featured-collection" class="btn">تسوق الآن</a>
         </div>
-      </div>
+    </section>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1602810318660-d2c46b750fdd?auto=format&fit=crop&w=900&q=80">
-        <div class="card-content">
-          <h3>WDZ Street T-Shirt</h3>
-          <div class="price">220 ر.س</div>
-          <button class="order-btn" onclick="orderProduct('WDZ Street T-Shirt',220)">اطلب الآن</button>
+    <!-- FEATURED COLLECTION -->
+    <section class="featured-collection" id="featured-collection">
+        <div class="container">
+            <h2 class="section-title">المجموعة المميزة</h2>
+            <div class="collection-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x400/121212/0A0A0A?text=WDZ+Hoodie+01" alt="WDZ Hoodie">
+                    <h3 class="text-white">هودي فاخر WDZ</h3>
+                    <p class="price text-neon">349.99 ر.س</p>
+                    <a href="#" class="btn">اطلب الآن</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x400/121212/0A0A0A?text=WDZ+T-Shirt+01" alt="WDZ T-Shirt">
+                    <h3 class="text-white">تيشيرت WDZ الأسود</h3>
+                    <p class="price text-neon">199.99 ر.س</p>
+                    <a href="#" class="btn">اطلب الآن</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x400/121212/0A0A0A?text=WDZ+Hoodie+02" alt="WDZ Hoodie">
+                    <h3 class="text-white">هودي WDZ الأنيق</h3>
+                    <p class="price text-neon">329.99 ر.س</p>
+                    <a href="#" class="btn">اطلب الآن</a>
+                </div>
+                 <div class="product-card">
+                    <img src="https://via.placeholder.com/400x400/121212/0A0A0A?text=WDZ+T-Shirt+02" alt="WDZ T-Shirt">
+                    <h3 class="text-white">تيشيرت WDZ الأخضر</h3>
+                    <p class="price text-neon">219.99 ر.س</p>
+                    <a href="#" class="btn">اطلب الآن</a>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- BRAND MESSAGE SECTION -->
+    <section class="brand-message">
+        <div class="container">
+            <h2 class="text-white">ليس مجرد ملابس.<br>إنه WDZ.</h2>
+        </div>
+    </section>
 
-<!-- BRAND MESSAGE -->
-<section class="statement">
-  <div class="container">
-    <h2>Not Just Clothing. It's WDZ.</h2>
-  </div>
-</section>
+    <!-- WHY WDZ SECTION -->
+    <section class="why-wdz">
+        <div class="container">
+            <h2 class="section-title">لماذا تختار WDZ؟</h2>
+            <div class="why-wdz-grid">
+                <div class="why-wdz-item">
+                    <div class="icon">✨</div> <!-- Placeholder icon -->
+                    <h3 class="text-white">أقمشة فاخرة</h3>
+                    <p class="text-soft-grey">مصنوعة من أجود الخامات لراحة وأناقة تدوم.</p>
+                </div>
+                <div class="why-wdz-item">
+                    <div class="icon">🚀</div> <!-- Placeholder icon -->
+                    <h3 class="text-white">مجموعة محدودة</h3>
+                    <p class="text-soft-grey">تصميمات حصرية وفريدة، تبرز شخصيتك.</p>
+                </div>
+                <div class="why-wdz-item">
+                    <div class="icon">⚡</div> <!-- Placeholder icon -->
+                    <h3 class="text-white">شحن سريع</h3>
+                    <p class="text-soft-grey">احصل على أزيائك الجديدة بأسرع وقت ممكن.</p>
+                </div>
+                <div class="why-wdz-item">
+                    <div class="icon">🔄</div> <!-- Placeholder icon -->
+                    <h3 class="text-white">إرجاع سهل</h3>
+                    <p class="text-soft-grey">تجربة تسوق خالية من القلق مع إرجاع ميسر.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- WHY WDZ -->
-<section>
-  <div class="container">
-    <div class="why-grid">
-      <div class="why-item">
-        <span>⭐</span>
-        <p>Premium Fabric</p>
-      </div>
-      <div class="why-item">
-        <span>🔥</span>
-        <p>Limited Street Collection</p>
-      </div>
-      <div class="why-item">
-        <span>🚚</span>
-        <p>Fast Shipping</p>
-      </div>
-      <div class="why-item">
-        <span>🔄</span>
-        <p>Easy Returns</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="logo">WDZ</div>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">TikTok</a>
+            </div>
+            <p>&copy; 2024 WDZ Street. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
 
-<!-- FOOTER -->
-<footer>
-  <h3>WDZ</h3>
-  <p>Founder: Touzani Omar</p>
-  <p>© 2026 WDZ STREET. All Rights Reserved.</p>
-</footer>
+    <script>
+        // Simple Intersection Observer for improved fade-in on scroll (optional, but good for premium feel)
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
 
-<script>
-function orderProduct(name,price){
-  const product={name:name,price:price};
-  localStorage.setItem("selectedProduct",JSON.stringify(product));
-  window.location.href="index.html";
-}
-</script>
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
 
+            // Apply fade-in for section titles and product cards
+            document.querySelectorAll('.section-title, .product-card, .brand-message h2, .why-wdz-item').forEach(element => {
+                element.style.opacity = '0'; // Hide initially
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(element);
+            });
+
+            // Add class when visible to trigger transition
+            const style = document.createElement('style');
+            style.innerHTML = `
+                .is-visible {
+                    opacity: 1 !important;
+                    transform: translateY(0) !important;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
 </body>
 </html>
