@@ -1,315 +1,361 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WDZ STREET</title>
-<link href="https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Luxora | تجربة تسوق فاخرة</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
 :root{
---black:#0A0A0A;
---dark:#121212;
---neon:#00FF66;
---white:#fff;
---grey:#A0A0A0;
+  --primary:#111111;
+  --accent:#C6A75E;
+  --light:#F8F8F8;
+  --text:#222;
+  --muted:#777;
+  --radius:14px;
+  --transition:all .4s ease;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-font-family:'Cairo',sans-serif;
-background:var(--black);
-color:var(--white);
-overflow-x:hidden;
-}
-
-/* NAVBAR */
-.navbar{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(10,10,10,.8);
-backdrop-filter:blur(10px);
-padding:20px 0;
-z-index:1000;
-border-bottom:1px solid rgba(0,255,102,.1);
+  font-family:'Cairo', sans-serif;
+  background:#fff;
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
 }
 
 .container{
-width:90%;
-max-width:1200px;
-margin:auto;
+  width:90%;
+  max-width:1200px;
+  margin:auto;
 }
 
-.nav-container{
-display:flex;
-justify-content:space-between;
-align-items:center;
+header{
+  position:fixed;
+  width:100%;
+  top:0;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(10px);
+  z-index:999;
+  padding:15px 0;
+  transition:var(--transition);
+}
+
+header.scrolled{
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .logo{
-font-weight:900;
-font-size:1.8rem;
-color:var(--neon);
-text-shadow:0 0 15px var(--neon);
+  font-size:24px;
+  font-weight:700;
+  letter-spacing:2px;
 }
 
-nav a{
-margin-left:25px;
-color:var(--grey);
-transition:.3s;
+.logo span{
+  color:var(--accent);
 }
 
-nav a:hover{color:var(--neon)}
+.nav a{
+  text-decoration:none;
+  margin-left:25px;
+  color:var(--text);
+  font-weight:500;
+  transition:var(--transition);
+}
 
-/* HERO */
+.nav a:hover{
+  color:var(--accent);
+}
+
 .hero{
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-position:relative;
-background:var(--black);
+  height:100vh;
+  background:url('https://images.unsplash.com/photo-1520975928316-2e4bce5c2f50?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  position:relative;
+  color:#fff;
+  margin-top:80px;
 }
 
-.hero-glow{
-position:absolute;
-width:600px;
-height:600px;
-background:radial-gradient(circle,rgba(0,255,102,.25),transparent 70%);
-filter:blur(80px);
-animation:glowMove 6s infinite alternate ease-in-out;
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to left, rgba(0,0,0,.6), rgba(0,0,0,.2));
 }
 
-@keyframes glowMove{
-from{transform:translate(-100px,-50px)}
-to{transform:translate(100px,50px)}
+.hero-content{
+  position:relative;
+  max-width:600px;
+  animation:fadeUp 1s ease forwards;
 }
-
-.hero-content{z-index:2}
 
 .hero h1{
-font-size:5rem;
-font-weight:900;
-text-shadow:0 0 15px rgba(0,255,102,.5);
+  font-size:42px;
+  margin-bottom:20px;
 }
 
 .hero p{
-margin:20px 0 40px;
-color:var(--grey);
-font-size:1.5rem;
+  margin-bottom:30px;
+  color:#eee;
 }
 
 .btn{
-padding:15px 40px;
-background:var(--neon);
-color:var(--black);
-font-weight:700;
-border:none;
-border-radius:6px;
-cursor:pointer;
-transition:.3s;
-box-shadow:0 0 15px rgba(0,255,102,.6);
+  display:inline-block;
+  padding:14px 35px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:600;
+  transition:var(--transition);
+  cursor:pointer;
 }
 
-.btn:hover{
-transform:translateY(-3px);
-box-shadow:0 0 30px var(--neon);
+.btn-primary{
+  background:var(--accent);
+  color:#000;
 }
 
-.scroll-down{
-position:absolute;
-bottom:30px;
-font-size:2rem;
-color:var(--neon);
-animation:bounce 2s infinite;
+.btn-primary:hover{
+  transform:translateY(-4px);
+  box-shadow:0 15px 30px rgba(198,167,94,.4);
 }
 
-@keyframes bounce{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(10px)}
+.section{
+  padding:100px 0;
 }
 
-/* SECTION */
-section{padding:120px 0}
 .section-title{
-text-align:center;
-font-size:3rem;
-margin-bottom:70px;
-text-shadow:0 0 10px rgba(0,255,102,.3);
+  text-align:center;
+  margin-bottom:60px;
 }
 
-/* PRODUCTS */
-.featured{background:var(--dark)}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:40px;
+.section-title h2{
+  font-size:30px;
+  margin-bottom:15px;
 }
 
-.card{
-background:var(--black);
-border-radius:10px;
-overflow:hidden;
-text-align:center;
-transition:.3s;
-position:relative;
+.section-title p{
+  color:var(--muted);
 }
 
-.card img{
-width:100%;
-height:320px;
-object-fit:cover;
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:40px;
 }
 
-.card:hover{
-transform:translateY(-8px) scale(1.03);
-box-shadow:0 0 25px rgba(0,255,102,.5);
+.product-card{
+  background:#fff;
+  border-radius:var(--radius);
+  overflow:hidden;
+  transition:var(--transition);
+  box-shadow:0 10px 40px rgba(0,0,0,0.05);
+  opacity:0;
+  transform:translateY(40px);
 }
 
-.card h3{margin:20px 0 10px}
+.product-card.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.product-card img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+}
+
+.product-info{
+  padding:25px;
+}
+
+.product-info h3{
+  margin-bottom:10px;
+}
 
 .price{
-color:var(--neon);
-font-weight:700;
-margin-bottom:20px;
+  color:var(--accent);
+  font-weight:700;
+  margin-bottom:20px;
 }
 
-/* BRAND MESSAGE */
-.brand-message{
-text-align:center;
-font-size:3rem;
-font-weight:900;
+.product-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.1);
 }
 
-/* WHY */
-.why{background:var(--dark)}
-.why-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:30px;
-text-align:center;
+.trust{
+  background:var(--light);
+  text-align:center;
 }
 
-.why-item{
-background:var(--black);
-padding:30px;
-border-radius:10px;
-transition:.3s;
+.trust-items{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:40px;
+  margin-top:40px;
 }
 
-.why-item:hover{
-transform:translateY(-10px);
-box-shadow:0 0 20px rgba(0,255,102,.4);
+.trust-item{
+  padding:20px;
 }
 
-/* FOOTER */
+.trust-item h4{
+  margin-bottom:10px;
+}
+
+.cta{
+  background:var(--primary);
+  color:#fff;
+  text-align:center;
+  padding:80px 20px;
+}
+
+.cta h2{
+  margin-bottom:20px;
+}
+
 footer{
-padding:60px 0;
-text-align:center;
-border-top:1px solid rgba(0,255,102,.2);
+  padding:40px 0;
+  text-align:center;
+  background:#000;
+  color:#aaa;
+  font-size:14px;
 }
 
-footer .logo{margin-bottom:20px}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
 
-/* RESPONSIVE */
 @media(max-width:768px){
-.hero h1{font-size:3rem}
-.section-title{font-size:2.2rem}
-.brand-message{font-size:2rem}
+  .hero h1{font-size:32px;}
 }
 </style>
 </head>
-
 <body>
 
-<header class="navbar">
-<div class="container nav-container">
-<div class="logo">WDZ</div>
-<nav>
-<a href="#shop">المتجر</a>
-<a href="#why">لماذا WDZ</a>
-<a href="#">تواصل</a>
-</nav>
-</div>
+<header id="header">
+  <div class="container nav">
+    <div class="logo">Lux<span>ora</span></div>
+    <div>
+      <a href="#">الرئيسية</a>
+      <a href="#products">المنتجات</a>
+      <a href="#contact">تواصل معنا</a>
+    </div>
+  </div>
 </header>
 
 <section class="hero">
-<div class="hero-glow"></div>
-<div class="hero-content">
-<h1>WDZ STREET</h1>
-<p>Own Your Energy.</p>
-<a href="#shop" class="btn">تسوق الآن</a>
-</div>
-<div class="scroll-down">⌄</div>
+  <div class="container hero-content">
+    <h1>الفخامة تبدأ من التفاصيل</h1>
+    <p>اكتشف مجموعة حصرية مصممة بعناية لتعكس ذوقك الرفيع.</p>
+    <a href="#products" class="btn btn-primary">تسوق الآن</a>
+  </div>
 </section>
 
-<section class="featured" id="shop">
-<div class="container">
-<h2 class="section-title">المجموعة المميزة</h2>
-<div class="grid">
-<div class="card">
-<img src="https://via.placeholder.com/400x400/121212/00FF66?text=WDZ+Hoodie" alt="">
-<h3>هودي WDZ</h3>
-<p class="price">349 ر.س</p>
-<button class="btn">اطلب الآن</button>
-</div>
-<div class="card">
-<img src="https://via.placeholder.com/400x400/121212/00FF66?text=WDZ+T-Shirt" alt="">
-<h3>تيشيرت WDZ</h3>
-<p class="price">199 ر.س</p>
-<button class="btn">اطلب الآن</button>
-</div>
-</div>
-</div>
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-title">
+      <h2>منتجاتنا المميزة</h2>
+      <p>اختيارات مختارة بعناية لتمنحك تجربة تسوق استثنائية</p>
+    </div>
+
+    <div class="products">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80">
+        <div class="product-info">
+          <h3>ساعة فاخرة</h3>
+          <div class="price">1,250 ر.س</div>
+          <a class="btn btn-primary">أضف إلى السلة</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=800&q=80">
+        <div class="product-info">
+          <h3>حقيبة جلد راقية</h3>
+          <div class="price">980 ر.س</div>
+          <a class="btn btn-primary">أضف إلى السلة</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80">
+        <div class="product-info">
+          <h3>نظارة أنيقة</h3>
+          <div class="price">650 ر.س</div>
+          <a class="btn btn-primary">أضف إلى السلة</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="brand-message">
-<div class="container">
-ليس مجرد ملابس. إنه WDZ.
-</div>
+<section class="section trust">
+  <div class="container">
+    <div class="section-title">
+      <h2>لماذا نحن؟</h2>
+      <p>نضمن لك تجربة آمنة واحترافية</p>
+    </div>
+
+    <div class="trust-items">
+      <div class="trust-item">
+        <h4>شحن سريع</h4>
+        <p>توصيل خلال 48 ساعة لجميع المدن</p>
+      </div>
+      <div class="trust-item">
+        <h4>دفع آمن 100%</h4>
+        <p>جميع العمليات مشفرة وآمنة بالكامل</p>
+      </div>
+      <div class="trust-item">
+        <h4>ضمان استرجاع</h4>
+        <p>استرجاع خلال 14 يوم بدون تعقيد</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="why" id="why">
-<div class="container">
-<h2 class="section-title">لماذا WDZ؟</h2>
-<div class="why-grid">
-<div class="why-item">
-<h3>خامة فاخرة</h3>
-<p>جودة تدوم طويلاً.</p>
-</div>
-<div class="why-item">
-<h3>تصميم حصري</h3>
-<p>ستايل يعبر عنك.</p>
-</div>
-<div class="why-item">
-<h3>شحن سريع</h3>
-<p>يوصل لباب بيتك بسرعة.</p>
-</div>
-<div class="why-item">
-<h3>إرجاع سهل</h3>
-<p>تجربة آمنة 100٪.</p>
-</div>
-</div>
-</div>
+<section class="cta">
+  <h2>ابدأ تجربتك الفاخرة اليوم</h2>
+  <a class="btn btn-primary">اطلب الآن</a>
 </section>
 
-<footer>
-<div class="logo">WDZ</div>
-<p>© 2026 WDZ Street. جميع الحقوق محفوظة.</p>
+<footer id="contact">
+  © 2026 Luxora. جميع الحقوق محفوظة.
 </footer>
 
 <script>
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-anchor.addEventListener("click",function(e){
-e.preventDefault();
-document.querySelector(this.getAttribute("href")).scrollIntoView({behavior:"smooth"});
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 50);
 });
-});
+
+const cards = document.querySelectorAll('.product-card');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+},{threshold:0.2});
+
+cards.forEach(card => observer.observe(card));
 </script>
 
 </body>
