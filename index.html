@@ -35,7 +35,26 @@ background:#333
 </style>
 </head>
 <body>
+<div id="productBox" style="background:white; max-width:300px; margin:20px auto; padding:20px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.1); text-align:center;">
+    <img id="pImage" style="width:100%; border-radius:8px;">
+    <h2 id="pName"></h2>
+    <p style="color:red; font-weight:bold;" id="pPrice"></p>
+    <p id="pDesc"></p>
+</div>
 
+<script>
+let product = JSON.parse(localStorage.getItem("product"));
+
+if(product){
+    document.getElementById("pImage").src = product.image;
+    document.getElementById("pName").innerText = product.name;
+    document.getElementById("pPrice").innerText = product.price + " درهم";
+    document.getElementById("pDesc").innerText = product.description;
+}else{
+    document.getElementById("productBox").style.display = "none";
+}
+</script>
+  
 <h1>اطلب الآن</h1>
 
 <form action="https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec" method="POST">
