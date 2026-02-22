@@ -53,12 +53,15 @@ e.preventDefault();
 
 fetch(scriptURL,{
 method:"POST",
+mode:"no-cors",
 body:new FormData(this)
 })
-.then(()=>alert("✅ تم إرسال الطلب بنجاح"))
-.catch(()=>alert("❌ حدث خطأ"))
+.then(()=>{
+alert("✅ تم إرسال الطلب بنجاح");
+this.reset();
+})
+.catch(()=>{
+alert("❌ حدث خطأ");
+});
 });
 </script>
-
-</body>
-</html>
