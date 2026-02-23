@@ -1,95 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Order Now</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WDZ Order</title>
+
 <style>
 body{
+background:#0a0a0a;
+color:white;
 font-family:Arial;
 text-align:center;
 padding:40px;
-background:#f4f4f4
 }
-form{
-background:white;
+.box{
+background:#111;
 padding:20px;
 border-radius:10px;
-width:300px;
+max-width:350px;
 margin:auto;
-box-shadow:0 0 10px rgba(0,0,0,0.1)
 }
-input,button{
+input{
 width:100%;
 padding:10px;
-margin:10px 0
+margin:8px 0;
+border-radius:6px;
+border:none;
 }
 button{
-background:black;
-color:white;
+background:#00ff66;
 border:none;
-cursor:pointer
+padding:12px;
+width:100%;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
 }
 button:hover{
-background:#333
+background:#00cc52;
 }
 </style>
 </head>
 <body>
-<div id="productBox" style="background:white; max-width:300px; margin:20px auto; padding:20px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.1); text-align:center;">
-    <img id="pImage" style="width:100%; border-radius:8px;">
-    <h2 id="pName"></h2>
-    <p style="color:red; font-weight:bold;" id="pPrice"></p>
-    <p id="pDesc"></p>
+
+<h1>WDZ STORE</h1>
+
+<div class="box">
+
+<h3>2 TSHIRT BLACK</h3>
+
+<form id="orderForm">
+<input id="name" placeholder="اسمك" required>
+<input id="phone" placeholder="رقم الهاتف" required>
+<input id="city" placeholder="المدينة" required>
+<input id="address" placeholder="العنوان" required>
+<button type="submit">تأكيد الطلب</button>
+</form>
+
 </div>
 
 <script>
-let product = JSON.parse(localStorage.getItem("product"));
-
-if(product){
-    document.getElementById("pImage").src = product.image;
-    document.getElementById("pName").innerText = product.name;
-    document.getElementById("pPrice").innerText = product.price + " درهم";
-    document.getElementById("pDesc").innerText = product.description;
-}else{
-    document.getElementById("productBox").style.display = "none";
-}
-</script>
-  
-<h1>اطلب الآن</h1>
-
-<form action="https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec" method="POST">
-
-  <input name="name" placeholder="الاسم" required>
-
-  <input name="phone" placeholder="رقم الهاتف" required>
-
-  <input name="city" placeholder="المدينة" required>
-
-  <input name="address" placeholder="العنوان" required>
-
-  <input name="product" placeholder="المنتج" required>
-
-  <button type="submit">إرسال الطلب</button>
-
-</form>
-  
-<script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec";
-
 document.getElementById("orderForm").addEventListener("submit", function(e){
 e.preventDefault();
 
-fetch(scriptURL,{
-method:"POST",
-mode:"no-cors",
-body:new FormData(this)
+fetch("https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec", {
+method: "POST",
+mode: "no-cors",
+body: new URLSearchParams({
+name: document.getElementById("name").value,
+phone: document.getElementById("phone").value,
+city: document.getElementById("city").value,
+address: document.getElementById("address").value,
+product: "2 TSHIRT BLACK"
 })
-.then(()=>{
-alert("✅ تم إرسال الطلب بنجاح");
-this.reset();
 })
-.catch(()=>{
-alert("❌ حدث خطأ");
+.then(() => {
+alert("تم إرسال الطلب بنجاح 🔥");
+document.getElementById("orderForm").reset();
+})
+.catch(error => {
+alert("حدث خطأ ❌");
+console.log(error);
 });
 });
 </script>
+
+</body>
+</html>
