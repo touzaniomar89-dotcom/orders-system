@@ -61,29 +61,30 @@ background:#00cc52;
 
 <script>
 document.getElementById("orderForm").addEventListener("submit", function(e){
-e.preventDefault();
+  e.preventDefault();
 
-fetch("https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec", {
-method: "POST",
-mode: "no-cors",
-body: new URLSearchParams({
-name: document.getElementById("name").value,
-phone: document.getElementById("phone").value,
-city: document.getElementById("city").value,
-address: document.getElementById("address").value,
-product: "2 TSHIRT BLACK"
-})
-})
-.then(() => {
-alert("تم إرسال الطلب بنجاح 🔥");
-document.getElementById("orderForm").reset();
-})
-.catch(error => {
-alert("حدث خطأ ❌");
-console.log(error);
-});
+  fetch("https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec", {
+    method: "POST",
+    mode: "no-cors",
+    body: new URLSearchParams({
+      name: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
+      city: document.getElementById("city").value,
+      address: document.getElementById("address").value,
+      product: "2 TSHIRT BLACK"
+    })
+  })
+  .then(() => {
+    alert("✅ تم إرسال الطلب بنجاح");
+    document.getElementById("orderForm").reset();
+  })
+  .catch(error => {
+    console.log(error);
+    alert("❌ حدث خطأ");
+  });
+
 });
 </script>
-
+  
 </body>
 </html>
