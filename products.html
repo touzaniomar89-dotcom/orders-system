@@ -1,361 +1,59 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Luxora | تجربة تسوق فاخرة</title>
-
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المنتجات</title>
 
 <style>
-:root{
-  --primary:#111111;
-  --accent:#C6A75E;
-  --light:#F8F8F8;
-  --text:#222;
-  --muted:#777;
-  --radius:14px;
-  --transition:all .4s ease;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
 body{
-  font-family:'Cairo', sans-serif;
-  background:#fff;
-  color:var(--text);
-  line-height:1.7;
-  overflow-x:hidden;
+  font-family: Arial;
+  background:#f5f5f5;
+  text-align:center;
 }
 
-.container{
-  width:90%;
-  max-width:1200px;
-  margin:auto;
+.card{
+  background:white;
+  width:300px;
+  margin:50px auto;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-header{
-  position:fixed;
-  width:100%;
-  top:0;
-  background:rgba(255,255,255,0.95);
-  backdrop-filter:blur(10px);
-  z-index:999;
-  padding:15px 0;
-  transition:var(--transition);
-}
-
-header.scrolled{
-  box-shadow:0 10px 30px rgba(0,0,0,0.05);
-}
-
-.nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.logo{
-  font-size:24px;
-  font-weight:700;
-  letter-spacing:2px;
-}
-
-.logo span{
-  color:var(--accent);
-}
-
-.nav a{
-  text-decoration:none;
-  margin-left:25px;
-  color:var(--text);
-  font-weight:500;
-  transition:var(--transition);
-}
-
-.nav a:hover{
-  color:var(--accent);
-}
-
-.hero{
-  height:100vh;
-  background:url('https://images.unsplash.com/photo-1520975928316-2e4bce5c2f50?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-  display:flex;
-  align-items:center;
-  position:relative;
-  color:#fff;
-  margin-top:80px;
-}
-
-.hero::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to left, rgba(0,0,0,.6), rgba(0,0,0,.2));
-}
-
-.hero-content{
-  position:relative;
-  max-width:600px;
-  animation:fadeUp 1s ease forwards;
-}
-
-.hero h1{
-  font-size:42px;
-  margin-bottom:20px;
-}
-
-.hero p{
-  margin-bottom:30px;
-  color:#eee;
-}
-
-.btn{
-  display:inline-block;
-  padding:14px 35px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:600;
-  transition:var(--transition);
+button{
+  background:black;
+  color:white;
+  padding:10px 20px;
+  border:none;
+  border-radius:6px;
   cursor:pointer;
 }
-
-.btn-primary{
-  background:var(--accent);
-  color:#000;
-}
-
-.btn-primary:hover{
-  transform:translateY(-4px);
-  box-shadow:0 15px 30px rgba(198,167,94,.4);
-}
-
-.section{
-  padding:100px 0;
-}
-
-.section-title{
-  text-align:center;
-  margin-bottom:60px;
-}
-
-.section-title h2{
-  font-size:30px;
-  margin-bottom:15px;
-}
-
-.section-title p{
-  color:var(--muted);
-}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:40px;
-}
-
-.product-card{
-  background:#fff;
-  border-radius:var(--radius);
-  overflow:hidden;
-  transition:var(--transition);
-  box-shadow:0 10px 40px rgba(0,0,0,0.05);
-  opacity:0;
-  transform:translateY(40px);
-}
-
-.product-card.visible{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.product-card img{
-  width:100%;
-  height:300px;
-  object-fit:cover;
-}
-
-.product-info{
-  padding:25px;
-}
-
-.product-info h3{
-  margin-bottom:10px;
-}
-
-.price{
-  color:var(--accent);
-  font-weight:700;
-  margin-bottom:20px;
-}
-
-.product-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 20px 60px rgba(0,0,0,0.1);
-}
-
-.trust{
-  background:var(--light);
-  text-align:center;
-}
-
-.trust-items{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:40px;
-  margin-top:40px;
-}
-
-.trust-item{
-  padding:20px;
-}
-
-.trust-item h4{
-  margin-bottom:10px;
-}
-
-.cta{
-  background:var(--primary);
-  color:#fff;
-  text-align:center;
-  padding:80px 20px;
-}
-
-.cta h2{
-  margin-bottom:20px;
-}
-
-footer{
-  padding:40px 0;
-  text-align:center;
-  background:#000;
-  color:#aaa;
-  font-size:14px;
-}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-@media(max-width:768px){
-  .hero h1{font-size:32px;}
+button:hover{
+  background:#333;
 }
 </style>
 </head>
 <body>
 
-<header id="header">
-  <div class="container nav">
-    <div class="logo">Lux<span>ora</span></div>
-    <div>
-      <a href="#">الرئيسية</a>
-      <a href="#products">المنتجات</a>
-      <a href="#contact">تواصل معنا</a>
-    </div>
-  </div>
-</header>
+<h1>المنتجات</h1>
 
-<section class="hero">
-  <div class="container hero-content">
-    <h1>الفخامة تبدأ من التفاصيل</h1>
-    <p>اكتشف مجموعة حصرية مصممة بعناية لتعكس ذوقك الرفيع.</p>
-    <a href="#products" class="btn btn-primary">تسوق الآن</a>
-  </div>
-</section>
-
-<section class="section" id="products">
-  <div class="container">
-    <div class="section-title">
-      <h2>منتجاتنا المميزة</h2>
-      <p>اختيارات مختارة بعناية لتمنحك تجربة تسوق استثنائية</p>
-    </div>
-
-    <div class="products">
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80">
-        <div class="product-info">
-          <h3>ساعة فاخرة</h3>
-          <div class="price">1,250 ر.س</div>
-          <a class="btn btn-primary">أضف إلى السلة</a>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=800&q=80">
-        <div class="product-info">
-          <h3>حقيبة جلد راقية</h3>
-          <div class="price">980 ر.س</div>
-          <a class="btn btn-primary">أضف إلى السلة</a>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80">
-        <div class="product-info">
-          <h3>نظارة أنيقة</h3>
-          <div class="price">650 ر.س</div>
-          <a class="btn btn-primary">أضف إلى السلة</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section trust">
-  <div class="container">
-    <div class="section-title">
-      <h2>لماذا نحن؟</h2>
-      <p>نضمن لك تجربة آمنة واحترافية</p>
-    </div>
-
-    <div class="trust-items">
-      <div class="trust-item">
-        <h4>شحن سريع</h4>
-        <p>توصيل خلال 48 ساعة لجميع المدن</p>
-      </div>
-      <div class="trust-item">
-        <h4>دفع آمن 100%</h4>
-        <p>جميع العمليات مشفرة وآمنة بالكامل</p>
-      </div>
-      <div class="trust-item">
-        <h4>ضمان استرجاع</h4>
-        <p>استرجاع خلال 14 يوم بدون تعقيد</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="cta">
-  <h2>ابدأ تجربتك الفاخرة اليوم</h2>
-  <a class="btn btn-primary">اطلب الآن</a>
-</section>
-
-<footer id="contact">
-  © 2026 Luxora. جميع الحقوق محفوظة.
-</footer>
+<div class="card">
+  <h3>2 TSHIRT BLACK</h3>
+  <p>السعر: 980 ر.س</p>
+  <button onclick="orderNow()">اطلب الآن</button>
+</div>
 
 <script>
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 50);
-});
+function orderNow(){
+  const product = {
+    name: "2 TSHIRT BLACK",
+    price: "980"
+  };
 
-const cards = document.querySelectorAll('.product-card');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
-    }
-  });
-},{threshold:0.2});
-
-cards.forEach(card => observer.observe(card));
+  localStorage.setItem("selectedProduct", JSON.stringify(product));
+  window.location.href = "index.html";
+}
 </script>
 
 </body>
