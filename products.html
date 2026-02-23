@@ -36,25 +36,60 @@ button:hover{
 </head>
 <body>
 
+  <div style="text-align:left; padding:20px;">
+  <button onclick="goToCheckout()">
+    🛒 السلة (<span id="cartCount">0</span>)
+  </button>
+</div>
+  
 <h1>المنتجات</h1>
-
+  
 <div class="card">
   <h3>2 TSHIRT BLACK</h3>
   <p>السعر: 980 ر.س</p>
-  <button onclick="orderNow()">اطلب الآن</button>
-</div>
+<button onclick="addToCart('2 TSHIRT BLACK', 980)">اطلب الآن</button></div>
 
-<script>
-function orderNow(){
-  const product = {
-    name: "2 TSHIRT BLACK",
-    price: "980"
-  };
+ <script>
+function addToCart(name, price){
 
-  localStorage.setItem("selectedProduct", JSON.stringify(product));
-  window.location.href = "index.html";
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let existing = cart.find(item => item.name === name);
+
+  if(existing){
+    existing.quantity += 1;
+  } else {
+    cart.push({
+      name: name,
+      price: price,
+      quantity: 1
+    });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert("✅ تمت إضافة المنتج إلى السلة 🛒");
+
+  updateCartCount(); // نحدث العداد بعد الإضافة
 }
-</script>
 
+function goToCheckout(){
+  window.location.href = "checkout.html";
+}
+
+function updateCartCount(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let totalItems = 0;
+
+  cart.forEach(item=>{
+    totalItems += item.quantity;
+  });
+
+  document.getElementById("cartCount").innerText = totalItems;
+}
+
+updateCartCount();
+</script>
+  
 </body>
 </html>
