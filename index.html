@@ -3,156 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نظام إدارة الطلبات</title>
+<title>WDZ Premium T-Shirt</title>
 
 <style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f4f4f4;
-}
-header{
-  background:#111;
-  color:#fff;
-  padding:20px;
-  text-align:center;
-}
-.container{
-  max-width:800px;
-  margin:40px auto;
-  background:#fff;
-  padding:30px;
-  border-radius:10px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.1);
-}
-h2{
-  margin-bottom:20px;
-}
-input, select{
-  width:100%;
-  padding:12px;
-  margin-bottom:15px;
-  border:1px solid #ddd;
-  border-radius:5px;
-  font-size:15px;
-}
-button{
-  width:100%;
-  padding:14px;
-  background:#000;
-  color:#fff;
-  border:none;
-  font-size:16px;
-  cursor:pointer;
-  border-radius:5px;
-}
-button:hover{
-  background:#333;
-}
-button:disabled{
-  background:#777;
-  cursor:not-allowed;
-}
-.message{
-  margin-top:15px;
-  padding:10px;
-  border-radius:5px;
-  display:none;
-}
-.success{
-  background:#d4edda;
-  color:#155724;
-}
-.error{
-  background:#f8d7da;
-  color:#721c24;
-}
+body{margin:0;font-family:Arial;background:#f4f4f4}
+.hero{background:#111;color:#fff;padding:40px;text-align:center}
+.hero img{max-width:300px;margin:20px auto;display:block}
+.price{font-size:28px;margin:10px 0}
+.container{max-width:800px;margin:40px auto;background:#fff;padding:30px;border-radius:10px;box-shadow:0 5px 20px rgba(0,0,0,0.1)}
+input,select{width:100%;padding:12px;margin-bottom:15px;border:1px solid #ddd;border-radius:5px}
+button{width:100%;padding:14px;background:#000;color:#fff;border:none;font-size:16px;cursor:pointer;border-radius:5px}
+.total{font-weight:bold;font-size:18px;margin-bottom:15px}
 </style>
 </head>
-
 <body>
 
-<header>
-<h1>نظام إدارة الطلبات</h1>
-</header>
+<div class="hero">
+<h1>WDZ Premium T-Shirt</h1>
+<img src="PUT_YOUR_PRODUCT_IMAGE_URL_HERE">
+<div class="price">299 MAD</div>
+<p>قماش عالي الجودة – تصميم حصري – الدفع عند الاستلام</p>
+<button onclick="scrollToForm()">اطلب الآن</button>
+</div>
 
 <div class="container">
-
-<h2>إنشاء طلب جديد</h2>
-
 <form id="orderForm">
 
-<input type="text" name="name" placeholder="اسم العميل" required>
-<input type="text" name="phone" placeholder="رقم الهاتف" required>
-<input type="date" name="date" required>
-<input type="text" name="city" placeholder="المدينة" required>
-<input type="text" name="address" placeholder="العنوان" required>
-<input type="text" name="product" placeholder="المنتج" required>
+<input type="hidden" name="product" value="WDZ Premium T-Shirt">
+<input type="hidden" name="status" value="قيد المعالجة">
 
-<select name="status">
-  <option value="قيد المعالجة">قيد المعالجة</option>
-  <option value="تم الشحن">تم الشحن</option>
-  <option value="تم التسليم">تم التسليم</option>
-  <option value="ملغي">ملغي</option>
+<input type="text" name="name" placeholder="الاسم الكامل" required>
+<input type="text" name="phone" placeholder="رقم الهاتف" required>
+<input type="text" name="city" placeholder="المدينة" required>
+<input type="text" name="address" placeholder="العنوان الكامل" required>
+
+<select name="size" required>
+<option value="">اختر المقاس</option>
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
 </select>
 
-<button type="submit" id="submitBtn">تأكيد الطلب</button>
+<select name="color" required>
+<option value="">اختر اللون</option>
+<option>Black</option>
+<option>White</option>
+<option>Green</option>
+</select>
 
-<div id="successMsg" class="message success">
-تم إرسال الطلب بنجاح ✅
+<input type="number" name="quantity" id="qty" value="1" min="1" required>
+
+<div class="total">
+المجموع: <span id="totalPrice">299</span> MAD
 </div>
 
-<div id="errorMsg" class="message error">
-حدث خطأ أثناء الإرسال ❌
-</div>
+<button type="submit">تأكيد الطلب</button>
 
 </form>
-
 </div>
 
 <script>
-
+const PRICE = 299;
 const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec";
 
-const form = document.getElementById("orderForm");
-const submitBtn = document.getElementById("submitBtn");
-const successMsg = document.getElementById("successMsg");
-const errorMsg = document.getElementById("errorMsg");
+const qtyInput = document.getElementById("qty");
+const totalPrice = document.getElementById("totalPrice");
 
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-
-  submitBtn.disabled = true;
-  submitBtn.innerText = "جاري الإرسال...";
-
-  successMsg.style.display = "none";
-  errorMsg.style.display = "none";
-
-  const formData = new FormData(form);
-
-  fetch(API_URL, {
-    method: "POST",
-    body: formData
-  })
-  .then(res => res.json())
-  .then(data => {
-      if(data.result === "success"){
-          successMsg.style.display = "block";
-          form.reset();
-      } else {
-          errorMsg.style.display = "block";
-      }
-  })
-  .catch(err => {
-      errorMsg.style.display = "block";
-  })
-  .finally(() => {
-      submitBtn.disabled = false;
-      submitBtn.innerText = "تأكيد الطلب";
-  });
-
+qtyInput.addEventListener("input", function(){
+totalPrice.textContent = PRICE * qtyInput.value;
 });
 
+function scrollToForm(){
+window.scrollTo({top:document.querySelector(".container").offsetTop,behavior:"smooth"});
+}
+
+document.getElementById("orderForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+const formData = new FormData(this);
+formData.append("date", new Date().toISOString().split("T")[0]);
+
+fetch(API_URL,{
+method:"POST",
+body:formData
+})
+.then(res=>res.json())
+.then(data=>{
+alert("تم استلام طلبك، سنتصل بك لتأكيده");
+this.reset();
+totalPrice.textContent = PRICE;
+});
+});
 </script>
 
 </body>
