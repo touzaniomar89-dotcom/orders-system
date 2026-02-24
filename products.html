@@ -3,93 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>المنتجات</title>
-
+<title>WDZ Product</title>
 <style>
-body{
-  font-family: Arial;
-  background:#f5f5f5;
-  text-align:center;
-}
-
-.card{
-  background:white;
-  width:300px;
-  margin:50px auto;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-button{
-  background:black;
-  color:white;
-  padding:10px 20px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-}
-button:hover{
-  background:#333;
-}
+body{margin:0;font-family:Arial;background:#f4f4f4}
+.container{max-width:900px;margin:40px auto;background:#fff;padding:30px;border-radius:10px}
+img{max-width:350px;display:block;margin:auto}
+.price{font-size:28px;margin:15px 0}
+select,input,button{width:100%;padding:12px;margin-bottom:15px}
+button{background:#000;color:#fff;border:none;cursor:pointer}
 </style>
 </head>
 <body>
 
-  <div style="text-align:left; padding:20px;">
-  <button onclick="goToCheckout()">
-    🛒 السلة (<span id="cartCount">0</span>)
-  </button>
+<div class="container">
+<h1>WDZ Premium T-Shirt</h1>
+<img src="PUT_IMAGE_URL_HERE">
+<div class="price">299 MAD</div>
+
+<form action="checkout.html" method="GET">
+<input type="hidden" name="product" value="WDZ Premium T-Shirt">
+<input type="hidden" name="price" value="299">
+
+<select name="size" required>
+<option value="">المقاس</option>
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+</select>
+
+<select name="color" required>
+<option value="">اللون</option>
+<option>Black</option>
+<option>White</option>
+<option>Green</option>
+</select>
+
+<input type="number" name="quantity" value="1" min="1" required>
+
+<button type="submit">متابعة إلى الدفع</button>
+</form>
 </div>
-  
-<h1>المنتجات</h1>
-  
-<div class="card">
-  <h3>2 TSHIRT BLACK</h3>
-  <p>السعر: 980 ر.س</p>
-<button onclick="addToCart('2 TSHIRT BLACK', 980)">اطلب الآن</button></div>
 
- <script>
-function addToCart(name, price){
-
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  let existing = cart.find(item => item.name === name);
-
-  if(existing){
-    existing.quantity += 1;
-  } else {
-    cart.push({
-      name: name,
-      price: price,
-      quantity: 1
-    });
-  }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  alert("✅ تمت إضافة المنتج إلى السلة 🛒");
-
-  updateCartCount(); // نحدث العداد بعد الإضافة
-}
-
-function goToCheckout(){
-  window.location.href = "checkout.html";
-}
-
-function updateCartCount(){
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  let totalItems = 0;
-
-  cart.forEach(item=>{
-    totalItems += item.quantity;
-  });
-
-  document.getElementById("cartCount").innerText = totalItems;
-}
-
-updateCartCount();
-</script>
-  
 </body>
 </html>
