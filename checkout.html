@@ -2,32 +2,77 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>Checkout</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إتمام الطلب</title>
+<style>
+body{margin:0;font-family:Arial;background:#f4f4f4}
+.container{max-width:800px;margin:50px auto;background:#fff;padding:30px;border-radius:10px}
+input,select,button{width:100%;padding:12px;margin-bottom:15px}
+button{background:#000;color:#fff;border:none;cursor:pointer}
+.summary{font-weight:bold;margin-bottom:20px}
+</style>
 </head>
 <body>
 
+<div class="container">
 <h2>إتمام الطلب</h2>
 
-<form id="checkoutForm">
-<input type="text" name="name" placeholder="الاسم" required>
-<input type="text" name="phone" placeholder="الهاتف" required>
+<div class="summary" id="summary"></div>
+
+<form id="orderForm">
+
+<input type="text" name="name" placeholder="الاسم الكامل" required>
+<input type="text" name="phone" placeholder="رقم الهاتف" required>
 <input type="text" name="city" placeholder="المدينة" required>
-<input type="text" name="address" placeholder="العنوان" required>
+<input type="text" name="address" placeholder="العنوان الكامل" required>
+
+<select name="size" required>
+<option value="">اختر المقاس</option>
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+</select>
+
+<select name="color" required>
+<option value="">اختر اللون</option>
+<option>Black</option>
+<option>White</option>
+<option>Green</option>
+</select>
+
+<input type="number" name="quantity" id="qty" value="1" min="1" required>
+
+<div id="total"></div>
 
 <button type="submit">تأكيد الطلب</button>
+
 </form>
+</div>
 
 <script>
-const API_URL = "ضع رابط Google Script هنا";
+const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec";
 
 const params = new URLSearchParams(window.location.search);
+const product = params.get("product");
+const price = parseInt(params.get("price"));
 
-document.getElementById("checkoutForm").addEventListener("submit", function(e){
+document.getElementById("summary").innerText = product + " - السعر: " + price + " MAD";
+
+const qtyInput = document.getElementById("qty");
+const totalDiv = document.getElementById("total");
+
+function updateTotal(){
+totalDiv.innerText = "المجموع: " + (price * qtyInput.value) + " MAD";
+}
+updateTotal();
+qtyInput.addEventListener("input", updateTotal);
+
+document.getElementById("orderForm").addEventListener("submit", function(e){
 e.preventDefault();
 
 const formData = new FormData(this);
-formData.append("product", params.get("product"));
-formData.append("quantity", params.get("quantity"));
+formData.append("product", product);
 formData.append("status", "قيد المعالجة");
 formData.append("date", new Date().toISOString().split("T")[0]);
 
@@ -37,7 +82,7 @@ body:formData
 })
 .then(res=>res.json())
 .then(data=>{
-window.location.href = "thankyou.html";
+window.location.href="thankyou.html";
 });
 });
 </script>
