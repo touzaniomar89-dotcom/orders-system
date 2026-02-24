@@ -16,145 +16,24 @@
     --muted:#888;
     --border:#1a1a1a;
 }
-
 *{margin:0;padding:0;box-sizing:border-box}
-
-body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Montserrat',sans-serif;
-}
-
-/* HEADER */
-header{
-    position:fixed;
-    top:0;
-    width:100%;
-    background:rgba(0,0,0,.9);
-    border-bottom:1px solid var(--border);
-    z-index:1000;
-}
-
-.nav{
-    max-width:1200px;
-    margin:auto;
-    padding:18px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    font-family:'Orbitron',sans-serif;
-    letter-spacing:2px;
-    color:var(--accent);
-}
-
-.nav a{
-    color:#fff;
-    text-decoration:none;
-    margin-left:25px;
-    font-size:14px;
-}
-
-/* LAYOUT */
-.wrapper{
-    max-width:1200px;
-    margin:120px auto 80px;
-    padding:0 20px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:60px;
-}
-
-.card{
-    background:var(--card);
-    padding:40px;
-    border-radius:20px;
-    border:1px solid var(--border);
-}
-
-h2{
-    font-family:'Orbitron',sans-serif;
-    font-size:20px;
-    margin-bottom:30px;
-}
-
-/* SUMMARY */
-.summary-item{
-    margin-bottom:14px;
-    color:var(--muted);
-    font-size:15px;
-}
-
-.summary-total{
-    margin-top:25px;
-    padding-top:20px;
-    border-top:1px solid var(--border);
-    font-size:24px;
-    font-weight:800;
-    color:var(--accent);
-}
-
-/* FORM */
-input{
-    width:100%;
-    padding:16px;
-    margin-bottom:20px;
-    background:#0f0f0f;
-    border:1px solid var(--border);
-    color:#fff;
-    border-radius:12px;
-    font-size:14px;
-    transition:.3s;
-}
-
-input:focus{
-    outline:none;
-    border-color:var(--accent);
-    box-shadow:0 0 10px rgba(0,255,102,.15);
-}
-
-button{
-    width:100%;
-    padding:18px;
-    background:var(--accent);
-    border:none;
-    font-weight:800;
-    font-size:16px;
-    cursor:pointer;
-    border-radius:14px;
-    transition:.3s;
-}
-
-button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 25px rgba(0,255,102,.25);
-}
-
-button.loading{
-    opacity:.7;
-    pointer-events:none;
-}
-
-.trust{
-    margin-top:25px;
-    font-size:13px;
-    color:var(--muted);
-    line-height:1.8;
-    border-top:1px solid var(--border);
-    padding-top:20px;
-}
-
-.empty{
-    text-align:center;
-    margin-top:150px;
-    font-family:'Orbitron',sans-serif;
-}
-
-@media(max-width:900px){
-    .wrapper{grid-template-columns:1fr}
-}
+body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;}
+header{position:fixed;top:0;width:100%;background:rgba(0,0,0,.9);border-bottom:1px solid var(--border);z-index:1000;}
+.nav{max-width:1200px;margin:auto;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:'Orbitron',sans-serif;letter-spacing:2px;color:var(--accent);}
+.nav a{color:#fff;text-decoration:none;margin-left:25px;font-size:14px;}
+.wrapper{max-width:1200px;margin:120px auto 80px;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+.card{background:var(--card);padding:40px;border-radius:20px;border:1px solid var(--border);}
+h2{font-family:'Orbitron',sans-serif;font-size:20px;margin-bottom:30px;}
+.summary-item{margin-bottom:14px;color:var(--muted);font-size:15px;}
+.summary-total{margin-top:25px;padding-top:20px;border-top:1px solid var(--border);font-size:24px;font-weight:800;color:var(--accent);}
+input{width:100%;padding:16px;margin-bottom:20px;background:#0f0f0f;border:1px solid var(--border);color:#fff;border-radius:12px;font-size:14px;}
+input:focus{outline:none;border-color:var(--accent);}
+button{width:100%;padding:18px;background:var(--accent);border:none;font-weight:800;font-size:16px;cursor:pointer;border-radius:14px;}
+button.loading{opacity:.7;pointer-events:none;}
+.trust{margin-top:25px;font-size:13px;color:var(--muted);line-height:1.8;border-top:1px solid var(--border);padding-top:20px;}
+.empty{text-align:center;margin-top:150px;font-family:'Orbitron',sans-serif;}
+@media(max-width:900px){.wrapper{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -173,7 +52,7 @@ button.loading{
 <div id="content"></div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec"; 
 const order = JSON.parse(localStorage.getItem("order"));
 
 if(!order){
@@ -211,11 +90,10 @@ document.getElementById("content").innerHTML = `
 </div>
 
 </div>
-
 </div>
 `;
 
-document.getElementById("orderForm").addEventListener("submit", function(e){
+document.getElementById("orderForm").addEventListener("submit", async function(e){
     e.preventDefault();
 
     const btn = document.getElementById("submitBtn");
@@ -223,24 +101,42 @@ document.getElementById("orderForm").addEventListener("submit", function(e){
     btn.innerText = "جارٍ الإرسال...";
 
     const formData = new FormData(this);
-
     formData.append("product", order.name);
     formData.append("size", order.size);
     formData.append("color", order.color);
     formData.append("quantity", order.quantity);
     formData.append("price", order.price * order.quantity);
     formData.append("status", "قيد المعالجة");
-    formData.append("date", new Date().toISOString().split("T")[0]);
 
-    fetch(API_URL,{
-        method:"POST",
-        body:formData
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        localStorage.removeItem("order");
-        window.location.href="thankyou.html";
-    });
+    try{
+        const response = await fetch(API_URL,{
+            method:"POST",
+            body:formData
+        });
+
+        const text = await response.text();
+        let data;
+
+        try{
+            data = JSON.parse(text);
+        }catch{
+            throw new Error("Invalid JSON response");
+        }
+
+        if(data.success){
+            localStorage.removeItem("order");
+            window.location.href="thankyou.html";
+        }else{
+            throw new Error("Server returned error");
+        }
+
+    }catch(error){
+        alert("حدث خطأ أثناء إرسال الطلب");
+        console.error(error);
+        btn.classList.remove("loading");
+        btn.innerText = "تأكيد الطلب";
+    }
+
 });
 }
 </script>
