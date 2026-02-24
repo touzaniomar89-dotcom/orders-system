@@ -6,221 +6,85 @@
 <title>WDZ | Premium Hoodie</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-
-<style>
-:root{
-    --bg:#0A0A0A;
-    --card:#111111;
-    --neon:#00FF66;
-    --text:#ffffff;
-    --muted:#8a8a8a;
-    --border:#1c1c1c;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Montserrat',sans-serif;
-}
-
-.container{
-    max-width:1300px;
-    margin:auto;
-    padding:80px 20px;
-}
-
-.product{
-    display:grid;
-    grid-template-columns:1.1fr 1fr;
-    gap:80px;
-    align-items:start;
-}
-
-/* LEFT */
-
-.gallery-main{
-    width:100%;
-    border-radius:18px;
-    background:#000;
-    border:1px solid var(--border);
-}
-
-.thumbs{
-    display:flex;
-    gap:12px;
-    margin-top:20px;
-}
-
-.thumbs img{
-    width:90px;
-    border-radius:10px;
-    cursor:pointer;
-    border:2px solid transparent;
-    transition:.3s;
-}
-
-.thumbs img:hover{
-    border-color:var(--neon);
-    transform:scale(1.05);
-}
-
-/* RIGHT */
-
-h1{
-    font-family:'Orbitron',sans-serif;
-    font-size:36px;
-    margin-bottom:15px;
-}
-
-.price{
-    font-size:30px;
-    color:var(--neon);
-    font-weight:800;
-    margin-bottom:20px;
-}
-
-.desc{
-    color:var(--muted);
-    line-height:1.8;
-    margin-bottom:30px;
-}
-
-.section{
-    background:var(--card);
-    padding:25px;
-    border-radius:16px;
-    border:1px solid var(--border);
-    margin-bottom:25px;
-}
-
-label{
-    display:block;
-    font-weight:600;
-    margin-bottom:8px;
-}
-
-select,input{
-    width:100%;
-    padding:14px;
-    background:#0f0f0f;
-    border:1px solid var(--border);
-    color:var(--text);
-    border-radius:10px;
-    margin-bottom:18px;
-}
-
-.total{
-    font-size:22px;
-    font-weight:700;
-    margin-bottom:20px;
-}
-
-button{
-    width:100%;
-    padding:18px;
-    background:var(--neon);
-    border:none;
-    font-weight:800;
-    font-size:16px;
-    cursor:pointer;
-    border-radius:12px;
-    transition:.3s;
-}
-
-button:hover{
-    transform:scale(1.03);
-}
-
-.trust{
-    margin-top:30px;
-    color:var(--muted);
-    font-size:14px;
-    line-height:1.8;
-}
-
-.timer{
-    margin-top:15px;
-    font-weight:700;
-    color:var(--neon);
-}
-
-@media(max-width:900px){
-    .product{
-        grid-template-columns:1fr;
-        gap:50px;
-    }
-}
-</style>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
+<header class="navbar">
+  <div class="nav-container">
+    <div class="logo">WDZ</div>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="product.html">المنتج</a>
+      <a href="checkout.html">الدفع</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
 <div class="container">
-    <div class="product">
 
-        <!-- LEFT -->
-        <div>
-            <img id="mainImage" class="gallery-main" src="images/hoodie1.jpg" alt="WDZ Hoodie">
-
-            <div class="thumbs">
-                <img src="images/hoodie1.jpg" onclick="changeImage(this)">
-                <img src="images/hoodie2.jpg" onclick="changeImage(this)">
-                <img src="images/hoodie3.jpg" onclick="changeImage(this)">
-            </div>
+    <!-- LEFT -->
+    <div class="left">
+        <img id="mainImage" src="images/hoodie1.jpg" alt="WDZ Hoodie">
+        <div style="display:flex;gap:10px;margin-top:20px;justify-content:center;">
+            <img src="images/hoodie1.jpg" width="80" onclick="changeImage(this)">
+            <img src="images/hoodie2.jpg" width="80" onclick="changeImage(this)">
+            <img src="images/hoodie3.jpg" width="80" onclick="changeImage(this)">
         </div>
-
-        <!-- RIGHT -->
-        <div>
-            <h1>WDZ Premium Hoodie</h1>
-            <div class="price">399 MAD</div>
-
-            <div class="desc">
-                ستريت وير بطابع مستقبلي. خامة ثقيلة عالية الجودة. طباعة مقاومة للغسل. إصدار محدود.
-            </div>
-
-            <div class="section">
-
-                <label>المقاس</label>
-                <select id="size">
-                    <option>S</option>
-                    <option>M</option>
-                    <option>L</option>
-                    <option>XL</option>
-                </select>
-
-                <label>اللون</label>
-                <select id="color">
-                    <option>Black</option>
-                    <option>Neon Green</option>
-                </select>
-
-                <label>الكمية</label>
-                <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()">
-
-                <div class="total">
-                    المجموع: <span id="total">399 MAD</span>
-                </div>
-
-                <button onclick="goCheckout()">إتمام الطلب</button>
-
-                <div class="timer">
-                    العرض ينتهي خلال: <span id="countdown">10:00</span>
-                </div>
-
-            </div>
-
-            <div class="trust">
-                ✔ الدفع عند الاستلام<br>
-                ✔ توصيل سريع لجميع مدن المغرب<br>
-                ✔ ضمان جودة 100%<br>
-                ✔ كمية محدودة
-            </div>
-
-        </div>
-
     </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+        <h1>WDZ Premium Hoodie</h1>
+        <div class="price">399 MAD</div>
+
+        <div class="desc">
+            ستريت وير بطابع مستقبلي. خامة ثقيلة عالية الجودة.
+            طباعة مقاومة للغسل. إصدار محدود بعدد قطع محدود.
+        </div>
+
+        <form style="margin-bottom:20px;">
+
+            <label>المقاس</label>
+            <select id="size">
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+            </select>
+
+            <label>اللون</label>
+            <select id="color">
+                <option>Black</option>
+                <option>Neon Green</option>
+            </select>
+
+            <label>الكمية</label>
+            <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()">
+
+        </form>
+
+        <div class="price" style="font-size:22px;">
+            المجموع: <span id="total">399 MAD</span>
+        </div>
+
+        <button onclick="goCheckout()">إتمام الطلب</button>
+
+        <div class="badges" style="margin-top:30px;">
+            ✔ الدفع عند الاستلام<br>
+            ✔ توصيل سريع لجميع مدن المغرب<br>
+            ✔ ضمان جودة 100%<br>
+            ✔ كمية محدودة
+        </div>
+
+        <div style="margin-top:20px;color:var(--neon);font-weight:700;">
+            العرض ينتهي خلال: <span id="countdown">10:00</span>
+        </div>
+    </div>
+
 </div>
+</section>
 
 <script>
 const price = 399;
