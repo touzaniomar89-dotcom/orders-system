@@ -5,23 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WDZ | إتمام الطلب</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-    --bg:#0A0A0A;
-    --card:#121212;
-    --neon:#00FF66;
-    --text:#ffffff;
-    --muted:#8a8a8a;
-    --border:#1c1c1c;
+    --bg:#0b0b0b;
+    --card:#111;
+    --accent:#00ff66;
+    --text:#fff;
+    --muted:#888;
+    --border:#1a1a1a;
 }
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
     background:var(--bg);
@@ -30,47 +26,61 @@ body{
 }
 
 /* HEADER */
-.header{
-    text-align:center;
-    padding:40px 20px 10px;
-    font-family:'Orbitron',sans-serif;
-    font-size:28px;
-    letter-spacing:2px;
-    color:var(--neon);
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,.9);
+    border-bottom:1px solid var(--border);
+    z-index:1000;
 }
 
-.container{
-    max-width:1100px;
+.nav{
+    max-width:1200px;
     margin:auto;
-    padding:40px 20px 80px;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.grid{
+.logo{
+    font-family:'Orbitron',sans-serif;
+    letter-spacing:2px;
+    color:var(--accent);
+}
+
+.nav a{
+    color:#fff;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:14px;
+}
+
+/* LAYOUT */
+.wrapper{
+    max-width:1200px;
+    margin:120px auto 80px;
+    padding:0 20px;
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:50px;
+    gap:60px;
 }
 
 .card{
     background:var(--card);
-    padding:35px;
+    padding:40px;
     border-radius:20px;
     border:1px solid var(--border);
-    transition:.3s;
-    box-shadow:0 0 0 transparent;
-}
-
-.card:hover{
-    box-shadow:0 0 25px rgba(0,255,102,.05);
 }
 
 h2{
     font-family:'Orbitron',sans-serif;
-    margin-bottom:30px;
     font-size:20px;
-    letter-spacing:1px;
+    margin-bottom:30px;
 }
 
+/* SUMMARY */
 .summary-item{
     margin-bottom:14px;
     color:var(--muted);
@@ -79,11 +89,11 @@ h2{
 
 .summary-total{
     margin-top:25px;
+    padding-top:20px;
+    border-top:1px solid var(--border);
     font-size:24px;
     font-weight:800;
-    color:var(--neon);
-    border-top:1px solid var(--border);
-    padding-top:20px;
+    color:var(--accent);
 }
 
 /* FORM */
@@ -93,7 +103,7 @@ input{
     margin-bottom:20px;
     background:#0f0f0f;
     border:1px solid var(--border);
-    color:var(--text);
+    color:#fff;
     border-radius:12px;
     font-size:14px;
     transition:.3s;
@@ -101,14 +111,14 @@ input{
 
 input:focus{
     outline:none;
-    border-color:var(--neon);
+    border-color:var(--accent);
     box-shadow:0 0 10px rgba(0,255,102,.15);
 }
 
 button{
     width:100%;
     padding:18px;
-    background:var(--neon);
+    background:var(--accent);
     border:none;
     font-weight:800;
     font-size:16px;
@@ -120,10 +130,6 @@ button{
 button:hover{
     transform:translateY(-2px);
     box-shadow:0 8px 25px rgba(0,255,102,.25);
-}
-
-button:active{
-    transform:scale(.98);
 }
 
 button.loading{
@@ -140,66 +146,74 @@ button.loading{
     padding-top:20px;
 }
 
+.empty{
+    text-align:center;
+    margin-top:150px;
+    font-family:'Orbitron',sans-serif;
+}
+
 @media(max-width:900px){
-    .grid{grid-template-columns:1fr}
+    .wrapper{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<div class="header">WDZ STORE</div>
-
-<div class="container">
-<div class="grid">
-
-<!-- ORDER SUMMARY -->
-<div class="card">
-    <h2>ملخص الطلب</h2>
-    <div id="productName" class="summary-item"></div>
-    <div id="productSize" class="summary-item"></div>
-    <div id="productColor" class="summary-item"></div>
-    <div id="productQty" class="summary-item"></div>
-    <div id="productTotal" class="summary-total"></div>
-</div>
-
-<!-- CUSTOMER FORM -->
-<div class="card">
-    <h2>معلومات العميل</h2>
-
-    <form id="orderForm">
-        <input type="text" name="name" placeholder="الاسم الكامل" required>
-        <input type="text" name="phone" placeholder="رقم الهاتف" required>
-        <input type="text" name="city" placeholder="المدينة" required>
-        <input type="text" name="address" placeholder="العنوان الكامل" required>
-        <button type="submit" id="submitBtn">تأكيد الطلب</button>
-    </form>
-
-    <div class="trust">
-        ✔ الدفع عند الاستلام<br>
-        ✔ توصيل سريع لجميع مدن المغرب<br>
-        ✔ سيتم التواصل خلال 24 ساعة
+<header>
+  <div class="nav">
+    <div class="logo">WDZ</div>
+    <div>
+      <a href="index.html">الرئيسية</a>
+      <a href="product.html">المنتج</a>
+      <a href="checkout.html">الدفع</a>
     </div>
-</div>
+  </div>
+</header>
 
-</div>
-</div>
+<div id="content"></div>
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec";
-
 const order = JSON.parse(localStorage.getItem("order"));
 
 if(!order){
-    document.body.innerHTML = "<h2 style='text-align:center;margin-top:100px;'>لا يوجد طلب.</h2>";
+    document.getElementById("content").innerHTML =
+        "<div class='empty'>لا يوجد طلب نشط</div>";
 }else{
-    const total = order.price * order.quantity;
 
-    document.getElementById("productName").innerText = "المنتج: " + order.name;
-    document.getElementById("productSize").innerText = "المقاس: " + order.size;
-    document.getElementById("productColor").innerText = "اللون: " + order.color;
-    document.getElementById("productQty").innerText = "الكمية: " + order.quantity;
-    document.getElementById("productTotal").innerText = "المجموع: " + total + " MAD";
-}
+document.getElementById("content").innerHTML = `
+<div class="wrapper">
+
+<div class="card">
+<h2>ملخص الطلب</h2>
+<div class="summary-item">المنتج: ${order.name}</div>
+<div class="summary-item">المقاس: ${order.size}</div>
+<div class="summary-item">اللون: ${order.color}</div>
+<div class="summary-item">الكمية: ${order.quantity}</div>
+<div class="summary-total">المجموع: ${order.price * order.quantity} MAD</div>
+</div>
+
+<div class="card">
+<h2>معلومات العميل</h2>
+
+<form id="orderForm">
+<input type="text" name="name" placeholder="الاسم الكامل" required>
+<input type="text" name="phone" placeholder="رقم الهاتف" required>
+<input type="text" name="city" placeholder="المدينة" required>
+<input type="text" name="address" placeholder="العنوان الكامل" required>
+<button type="submit" id="submitBtn">تأكيد الطلب</button>
+</form>
+
+<div class="trust">
+✔ الدفع عند الاستلام<br>
+✔ توصيل سريع لجميع مدن المغرب<br>
+✔ سيتم التواصل خلال 24 ساعة
+</div>
+
+</div>
+
+</div>
+`;
 
 document.getElementById("orderForm").addEventListener("submit", function(e){
     e.preventDefault();
@@ -228,6 +242,7 @@ document.getElementById("orderForm").addEventListener("submit", function(e){
         window.location.href="thankyou.html";
     });
 });
+}
 </script>
 
 </body>
