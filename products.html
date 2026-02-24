@@ -2,28 +2,101 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>WDZ Product</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WDZ | Product</title>
+<style>
+body{
+    margin:0;
+    background:#0A0A0A;
+    color:white;
+    font-family:Arial, sans-serif;
+}
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+}
+.product{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+.product img{
+    width:100%;
+    border-radius:12px;
+}
+.price{
+    font-size:24px;
+    margin:20px 0;
+    color:#00ff66;
+}
+select,input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    background:#111;
+    border:1px solid #222;
+    color:white;
+}
+button{
+    width:100%;
+    padding:15px;
+    background:#00ff66;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+button:hover{
+    background:#00cc55;
+}
+@media(max-width:768px){
+    .product{
+        grid-template-columns:1fr;
+    }
+}
+</style>
 </head>
 <body>
 
-<h1>WDZ Premium T-Shirt</h1>
-<p>299 MAD</p>
+<div class="container">
+    <div class="product">
+        <div>
+            <img src="https://via.placeholder.com/600x600" alt="WDZ Hoodie">
+        </div>
+        <div>
+            <h1>WDZ Premium Hoodie</h1>
+            <div class="price">399 MAD</div>
 
-<form action="checkout.html" method="GET">
-<input type="hidden" name="product" value="WDZ Premium T-Shirt">
-<input type="hidden" name="price" value="299">
+            <label>المقاس</label>
+            <select id="size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
 
-<select name="size" required>
-<option>S</option>
-<option>M</option>
-<option>L</option>
-<option>XL</option>
-</select>
+            <label>الكمية</label>
+            <input type="number" id="quantity" value="1" min="1">
 
-<input type="number" name="quantity" value="1" min="1">
+            <button onclick="goCheckout()">إتمام الطلب</button>
+        </div>
+    </div>
+</div>
 
-<button type="submit">متابعة</button>
-</form>
+<script>
+function goCheckout(){
+    const size = document.getElementById("size").value;
+    const quantity = document.getElementById("quantity").value;
+
+    localStorage.setItem("productName","WDZ Premium Hoodie");
+    localStorage.setItem("productPrice","399");
+    localStorage.setItem("productSize",size);
+    localStorage.setItem("productQuantity",quantity);
+
+    window.location.href = "checkout.html";
+}
+</script>
 
 </body>
 </html>
