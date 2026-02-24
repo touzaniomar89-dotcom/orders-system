@@ -3,134 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>إتمام الطلب</title>
-
+<title>Checkout</title>
 <style>
-body{
-  font-family: Arial;
-  background:#111;
-  color:white;
-  text-align:center;
-}
-
-.box{
-  background:#222;
-  width:350px;
-  margin:30px auto;
-  padding:20px;
-  border-radius:10px;
-}
-
-button{
-  background:#00e676;
-  border:none;
-  padding:10px 20px;
-  cursor:pointer;
-  border-radius:6px;
-}
-
-.remove{
-  background:red;
-  color:white;
-  padding:5px 10px;
-  margin-right:10px;
-}
+body{margin:0;font-family:Arial;background:#f4f4f4}
+.container{max-width:800px;margin:40px auto;background:#fff;padding:30px;border-radius:10px}
+input,button{width:100%;padding:12px;margin-bottom:15px}
+button{background:#000;color:#fff;border:none;cursor:pointer}
+.summary{font-weight:bold;margin-bottom:20px}
 </style>
 </head>
 <body>
 
-<h2>🛒 السلة</h2>
+<div class="container">
+<h2>إتمام الطلب</h2>
 
-<div class="box">
-  <div id="cartItems"></div>
-  <h3 id="total"></h3>
-</div>
+<div class="summary" id="summary"></div>
 
-<h2>📦 بيانات الطلب</h2>
+<form id="checkoutForm">
+<input type="text" name="name" placeholder="الاسم الكامل" required>
+<input type="text" name="phone" placeholder="رقم الهاتف" required>
+<input type="text" name="city" placeholder="المدينة" required>
+<input type="text" name="address" placeholder="العنوان الكامل" required>
 
-<div class="box">
-<form id="orderForm">
-  <input id="name" placeholder="اسمك" required><br><br>
-  <input id="phone" placeholder="رقم الهاتف" required><br><br>
-  <input id="city" placeholder="المدينة" required><br><br>
-  <input id="address" placeholder="العنوان" required><br><br>
-  <button type="submit">تأكيد الطلب</button>
+<button type="submit">تأكيد الطلب</button>
 </form>
 </div>
 
 <script>
+const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec";
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let total = 0;
+const params = new URLSearchParams(window.location.search);
 
-function renderCart(){
-  let html = "";
-  total = 0;
+const product = params.get("product");
+const price = parseInt(params.get("price"));
+const size = params.get("size");
+const color = params.get("color");
+const quantity = parseInt(params.get("quantity"));
 
-  cart.forEach((item, index)=>{
-    total += item.price * item.quantity;
+const total = price * quantity;
 
-    html += `
-      <p>
-        ${item.name} - ${item.quantity} × ${item.price} ر.س
-        <button class="remove" onclick="removeItem(${index})">X</button>
-      </p>
-    `;
-  });
+document.getElementById("summary").innerText =
+product + " | " + size + " | " + color + " | الكمية: " + quantity + " | المجموع: " + total + " MAD";
 
-  document.getElementById("cartItems").innerHTML = html;
-  document.getElementById("total").innerText = "المجموع: " + total + " ر.س";
-}
+document.getElementById("checkoutForm").addEventListener("submit", function(e){
+e.preventDefault();
 
-function removeItem(index){
-  cart.splice(index,1);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart();
-}
+const formData = new FormData(this);
+formData.append("product", product);
+formData.append("size", size);
+formData.append("color", color);
+formData.append("quantity", quantity);
+formData.append("status", "قيد المعالجة");
+formData.append("date", new Date().toISOString().split("T")[0]);
 
-renderCart();
-
-document.getElementById("orderForm").addEventListener("submit", async function(e){
-  e.preventDefault();
-  
-  if(cart.length === 0){
-    alert("السلة فارغة 🛒");
-    return;
-  }
-
-  const data = {
-    name: document.getElementById("name").value,
-    phone: document.getElementById("phone").value,
-    city: document.getElementById("city").value,
-    address: document.getElementById("address").value,
-    cart: cart,
-    total: total
-  };
-
-  try{
-
-    const response = await fetch("/api/submit", {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body: JSON.stringify(data)
-    });
-
-    if(response.ok){
-      localStorage.removeItem("cart");
-      window.location.href="thankyou.html";
-    }else{
-      alert("❌ حدث خطأ أثناء إرسال الطلب");
-    }
-
-  }catch(error){
-    alert("❌ خطأ في الاتصال بالخادم");
-  }
-
+fetch(API_URL,{
+method:"POST",
+body:formData
+})
+.then(res=>res.json())
+.then(data=>{
+window.location.href = "thankyou.html";
 });
-
+});
 </script>
-  
+
 </body>
 </html>
