@@ -41,29 +41,8 @@ button{
   cursor:pointer;
 }
 
-.success{
-  margin-top:20px;
-  padding:15px;
-  background:#e6ffe6;
-  border:1px solid #00aa00;
-  display:none;
-}
-
-table{
-  width:100%;
-  margin-top:30px;
-  border-collapse:collapse;
-}
-
-th, td{
-  border:1px solid #ddd;
-  padding:10px;
-  text-align:center;
-}
-
-th{
-  background:#111;
-  color:#fff;
+button:hover{
+  opacity:0.9;
 }
 </style>
 </head>
@@ -94,29 +73,11 @@ th{
 
 <button onclick="submitOrder()">تأكيد الطلب</button>
 
-<div class="success" id="successMessage">
-تم تسجيل الطلب بنجاح
-</div>
-
-<table id="ordersTable">
-<thead>
-<tr>
-<th>الاسم</th>
-<th>الهاتف</th>
-<th>التاريخ</th>
-<th>المدينة</th>
-<th>العنوان</th>
-<th>المنتج</th>
-<th>الحالة</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-
 </div>
 
 <script>
+const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec";
+
 function submitOrder(){
 
 const name = document.getElementById("name").value.trim();
@@ -125,33 +86,38 @@ const date = document.getElementById("date").value;
 const city = document.getElementById("city").value.trim();
 const address = document.getElementById("address").value.trim();
 const product = document.getElementById("product").value.trim();
-const status = document.getElementById("status").value;
 
 if(!name || !phone || !date || !city || !address || !product){
   alert("يرجى ملء جميع الحقول");
   return;
 }
 
-const table = document.getElementById("ordersTable").getElementsByTagName("tbody")[0];
-const newRow = table.insertRow();
-
-newRow.insertCell(0).innerText = name;
-newRow.insertCell(1).innerText = phone;
-newRow.insertCell(2).innerText = date;
-newRow.insertCell(3).innerText = city;
-newRow.insertCell(4).innerText = address;
-newRow.insertCell(5).innerText = product;
-newRow.insertCell(6).innerText = status;
-
-document.getElementById("successMessage").style.display = "block";
-
-document.getElementById("name").value="";
-document.getElementById("phone").value="";
-document.getElementById("date").value="";
-document.getElementById("city").value="";
-document.getElementById("address").value="";
-document.getElementById("product").value="";
-document.getElementById("status").value="قيد المعالجة";
+fetch(API_URL, {
+  method: "POST",
+  mode: "no-cors",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  body: new URLSearchParams({
+    name: name,
+    phone: phone,
+    city: city,
+    address: address,
+    product: product
+  })
+})
+.then(() => {
+  alert("تم إرسال الطلب بنجاح");
+  document.getElementById("name").value="";
+  document.getElementById("phone").value="";
+  document.getElementById("date").value="";
+  document.getElementById("city").value="";
+  document.getElementById("address").value="";
+  document.getElementById("product").value="";
+})
+.catch(() => {
+  alert("حدث خطأ أثناء الإرسال");
+});
 }
 </script>
 
