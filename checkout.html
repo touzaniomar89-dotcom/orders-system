@@ -51,8 +51,8 @@ button.loading{opacity:.7;pointer-events:none;}
 
 <div id="content"></div>
 
-<<script>
-const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec"; 
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbz2lSWDdM-VHsKwrhTLvXTkD-2eJ8NJ5hRNc0msmxzFb342FVkgH-kE113G4Ol7vg0q8A/exec";
 const order = JSON.parse(localStorage.getItem("order"));
 
 if(!order){
@@ -109,8 +109,7 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
         size: order.size,
         color: order.color,
         quantity: order.quantity,
-        price: order.price * order.quantity,
-        status: "قيد المعالجة"
+        total: order.price * order.quantity
     };
 
     try{
