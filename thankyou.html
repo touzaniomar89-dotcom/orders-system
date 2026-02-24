@@ -5,101 +5,142 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WDZ | تم استلام طلبك</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-    --bg:#0A0A0A;
-    --card:#111111;
-    --neon:#00FF66;
-    --text:#ffffff;
-    --muted:#8a8a8a;
-    --border:#1c1c1c;
+    --bg:#0b0b0b;
+    --card:#111;
+    --accent:#00ff66;
+    --text:#fff;
+    --muted:#888;
+    --border:#1a1a1a;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
     background:var(--bg);
     color:var(--text);
     font-family:'Montserrat',sans-serif;
+}
+
+/* HEADER */
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,.9);
+    border-bottom:1px solid var(--border);
+    z-index:1000;
+}
+
+.nav{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-family:'Orbitron',sans-serif;
+    letter-spacing:2px;
+    color:var(--accent);
+}
+
+.nav a{
+    color:#fff;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:14px;
+}
+
+/* CONTENT */
+.wrapper{
+    min-height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
-    min-height:100vh;
-    padding:20px;
+    padding:140px 20px 80px;
 }
 
 .card{
     background:var(--card);
-    padding:50px 40px;
-    border-radius:20px;
+    padding:60px 50px;
+    border-radius:24px;
     border:1px solid var(--border);
     text-align:center;
-    max-width:600px;
+    max-width:650px;
     width:100%;
 }
 
 h1{
     font-family:'Orbitron',sans-serif;
-    font-size:32px;
-    margin-bottom:20px;
+    font-size:34px;
+    margin-bottom:25px;
 }
 
 .order-id{
-    color:var(--neon);
-    font-weight:700;
-    margin:15px 0 25px 0;
-    font-size:18px;
+    color:var(--accent);
+    font-weight:800;
+    font-size:20px;
+    margin-bottom:30px;
 }
 
 p{
     color:var(--muted);
     line-height:1.8;
-    margin-bottom:30px;
+    margin-bottom:35px;
 }
 
-button{
-    padding:16px 35px;
-    background:var(--neon);
-    border:none;
+.btn{
+    display:inline-block;
+    padding:18px 40px;
+    background:var(--accent);
+    color:#000;
     font-weight:800;
-    font-size:15px;
-    cursor:pointer;
-    border-radius:12px;
+    text-decoration:none;
+    border-radius:14px;
     transition:.3s;
 }
 
-button:hover{
-    transform:scale(1.05);
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(0,255,102,.3);
 }
 </style>
 </head>
 <body>
 
-<div class="card">
+<header>
+  <div class="nav">
+    <div class="logo">WDZ</div>
+    <div>
+      <a href="index.html">الرئيسية</a>
+      <a href="product.html">المنتج</a>
+    </div>
+  </div>
+</header>
 
-    <h1>تم استلام طلبك</h1>
-
-    <div class="order-id" id="orderId"></div>
-
-    <p>
-        شكرًا لاختيارك WDZ.<br>
-        سيتم التواصل معك خلال 24 ساعة لتأكيد الطلب.<br>
-        الدفع عند الاستلام.
-    </p>
-
-    <button onclick="goHome()">العودة للرئيسية</button>
-
+<div class="wrapper">
+    <div class="card">
+        <h1>تم استلام طلبك بنجاح</h1>
+        <div class="order-id" id="orderId"></div>
+        <p>
+            شكراً لاختيارك WDZ.<br>
+            سيتم التواصل معك خلال 24 ساعة لتأكيد الطلب.<br>
+            الدفع يتم عند الاستلام.
+        </p>
+        <a href="index.html" class="btn">العودة للرئيسية</a>
+    </div>
 </div>
 
 <script>
-const orderNumber = "WDZ-" + Math.floor(Math.random() * 1000000);
+const orderNumber = "WDZ-" + Math.floor(100000 + Math.random() * 900000);
 document.getElementById("orderId").innerText = "رقم الطلب: " + orderNumber;
-
-function goHome(){
-    window.location.href = "index.html";
-}
+localStorage.removeItem("order");
 </script>
 
 </body>
