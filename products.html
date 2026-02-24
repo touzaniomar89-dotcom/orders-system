@@ -3,57 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WDZ | Product</title>
+<title>WDZ | Premium Hoodie</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
+:root{
+    --bg:#0A0A0A;
+    --card:#111;
+    --neon:#00FF66;
+    --text:#fff;
+    --muted:#888;
+}
+*{box-sizing:border-box}
 body{
     margin:0;
-    background:#0A0A0A;
-    color:white;
-    font-family:Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Montserrat',sans-serif;
 }
 .container{
-    max-width:1100px;
+    max-width:1200px;
     margin:auto;
-    padding:40px 20px;
+    padding:60px 20px;
 }
 .product{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-    align-items:center;
+    grid-template-columns:1.1fr 1fr;
+    gap:60px;
+    align-items:start;
 }
-.product img{
+.gallery-main{
     width:100%;
-    border-radius:12px;
+    border-radius:16px;
+    background:#000;
+}
+.thumbs{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+.thumbs img{
+    width:80px;
+    cursor:pointer;
+    border-radius:8px;
+    border:2px solid transparent;
+}
+.thumbs img:hover{
+    border:2px solid var(--neon);
+}
+h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:32px;
+    margin:0 0 10px;
 }
 .price{
-    font-size:24px;
-    margin:20px 0;
-    color:#00ff66;
+    font-size:26px;
+    color:var(--neon);
+    margin:15px 0;
+    font-weight:700;
+}
+.desc{
+    color:var(--muted);
+    line-height:1.6;
+    margin-bottom:25px;
+}
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:600;
 }
 select,input{
     width:100%;
-    padding:12px;
-    margin-bottom:15px;
-    background:#111;
+    padding:14px;
+    background:var(--card);
     border:1px solid #222;
-    color:white;
+    color:var(--text);
+    margin-bottom:18px;
+    border-radius:8px;
+}
+.total{
+    font-size:20px;
+    margin-bottom:20px;
 }
 button{
     width:100%;
-    padding:15px;
-    background:#00ff66;
+    padding:16px;
+    background:var(--neon);
     border:none;
-    font-weight:bold;
+    font-weight:800;
     cursor:pointer;
+    border-radius:10px;
+    transition:.3s;
 }
 button:hover{
-    background:#00cc55;
+    transform:scale(1.02);
 }
-@media(max-width:768px){
-    .product{
-        grid-template-columns:1fr;
-    }
+.badges{
+    margin-top:25px;
+    font-size:14px;
+    color:var(--muted);
+}
+.timer{
+    margin-top:20px;
+    color:var(--neon);
+    font-weight:700;
+}
+@media(max-width:900px){
+    .product{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -61,41 +118,104 @@ button:hover{
 
 <div class="container">
     <div class="product">
+
+        <!-- LEFT -->
         <div>
-            <img src="https://via.placeholder.com/600x600" alt="WDZ Hoodie">
+            <img id="mainImage" class="gallery-main" src="images/hoodie1.jpg" alt="WDZ Hoodie">
+
+            <div class="thumbs">
+                <img src="images/hoodie1.jpg" onclick="changeImage(this)">
+                <img src="images/hoodie2.jpg" onclick="changeImage(this)">
+                <img src="images/hoodie3.jpg" onclick="changeImage(this)">
+            </div>
         </div>
+
+        <!-- RIGHT -->
         <div>
             <h1>WDZ Premium Hoodie</h1>
             <div class="price">399 MAD</div>
 
+            <div class="desc">
+                تصميم مستقبلي بطابع ستريت وير. قماش ثقيل فاخر. طباعة عالية الجودة مقاومة للغسل.
+            </div>
+
             <label>المقاس</label>
             <select id="size">
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+            </select>
+
+            <label>اللون</label>
+            <select id="color">
+                <option>Black</option>
+                <option>Neon Green</option>
             </select>
 
             <label>الكمية</label>
-            <input type="number" id="quantity" value="1" min="1">
+            <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()">
+
+            <div class="total">
+                المجموع: <span id="total">399 MAD</span>
+            </div>
 
             <button onclick="goCheckout()">إتمام الطلب</button>
+
+            <div class="timer">
+                العرض ينتهي خلال: <span id="countdown">10:00</span>
+            </div>
+
+            <div class="badges">
+                ✔ الدفع عند الاستلام<br>
+                ✔ توصيل لجميع مدن المغرب<br>
+                ✔ كمية محدودة
+            </div>
         </div>
+
     </div>
 </div>
 
 <script>
-function goCheckout(){
-    const size = document.getElementById("size").value;
-    const quantity = document.getElementById("quantity").value;
+const price = 399;
 
-    localStorage.setItem("productName","WDZ Premium Hoodie");
-    localStorage.setItem("productPrice","399");
-    localStorage.setItem("productSize",size);
-    localStorage.setItem("productQuantity",quantity);
-
-    window.location.href = "checkout.html";
+function updateTotal(){
+    const qty = parseInt(document.getElementById("quantity").value);
+    document.getElementById("total").innerText = (price * qty) + " MAD";
 }
+
+function changeImage(el){
+    document.getElementById("mainImage").src = el.src;
+}
+
+function goCheckout(){
+    const data = {
+        name:"WDZ Premium Hoodie",
+        price:price,
+        size:document.getElementById("size").value,
+        color:document.getElementById("color").value,
+        quantity:document.getElementById("quantity").value
+    };
+    localStorage.setItem("order",JSON.stringify(data));
+    window.location.href="checkout.html";
+}
+
+/* Countdown */
+let minutes = 10;
+let seconds = 0;
+
+setInterval(()=>{
+    if(seconds===0){
+        if(minutes===0) return;
+        minutes--;
+        seconds=59;
+    }else{
+        seconds--;
+    }
+    document.getElementById("countdown").innerText =
+        String(minutes).padStart(2,'0') + ":" +
+        String(seconds).padStart(2,'0');
+},1000);
 </script>
 
 </body>
