@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نظام الطلبات</title>
+<title>نظام إدارة الطلبات</title>
 
 <style>
 body{
   margin:0;
-  font-family:Arial;
-  background:#f2f2f2;
+  font-family:Arial, sans-serif;
+  background:#f4f4f4;
 }
 header{
   background:#111;
@@ -18,23 +18,54 @@ header{
   text-align:center;
 }
 .container{
-  max-width:900px;
+  max-width:800px;
   margin:40px auto;
   background:#fff;
   padding:30px;
-  box-shadow:0 0 10px rgba(0,0,0,0.1);
+  border-radius:10px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
-input, select, button{
+h2{
+  margin-bottom:20px;
+}
+input, select{
   width:100%;
   padding:12px;
-  margin-top:10px;
-  font-size:16px;
+  margin-bottom:15px;
+  border:1px solid #ddd;
+  border-radius:5px;
+  font-size:15px;
 }
 button{
+  width:100%;
+  padding:14px;
   background:#000;
   color:#fff;
   border:none;
+  font-size:16px;
   cursor:pointer;
+  border-radius:5px;
+}
+button:hover{
+  background:#333;
+}
+button:disabled{
+  background:#777;
+  cursor:not-allowed;
+}
+.message{
+  margin-top:15px;
+  padding:10px;
+  border-radius:5px;
+  display:none;
+}
+.success{
+  background:#d4edda;
+  color:#155724;
+}
+.error{
+  background:#f8d7da;
+  color:#721c24;
 }
 </style>
 </head>
@@ -42,76 +73,86 @@ button{
 <body>
 
 <header>
-<h1>نظام الطلبات</h1>
+<h1>نظام إدارة الطلبات</h1>
 </header>
 
 <div class="container">
 
 <h2>إنشاء طلب جديد</h2>
 
-<input type="text" id="name" placeholder="اسم العميل">
-<input type="text" id="phone" placeholder="رقم الهاتف">
-<input type="date" id="date">
-<input type="text" id="city" placeholder="المدينة">
-<input type="text" id="address" placeholder="العنوان">
-<input type="text" id="product" placeholder="المنتج">
+<form id="orderForm">
 
-<select id="status">
+<input type="text" name="name" placeholder="اسم العميل" required>
+<input type="text" name="phone" placeholder="رقم الهاتف" required>
+<input type="date" name="date" required>
+<input type="text" name="city" placeholder="المدينة" required>
+<input type="text" name="address" placeholder="العنوان" required>
+<input type="text" name="product" placeholder="المنتج" required>
+
+<select name="status">
   <option value="قيد المعالجة">قيد المعالجة</option>
   <option value="تم الشحن">تم الشحن</option>
   <option value="تم التسليم">تم التسليم</option>
   <option value="ملغي">ملغي</option>
 </select>
 
-<button onclick="submitOrder()">تأكيد الطلب</button>
+<button type="submit" id="submitBtn">تأكيد الطلب</button>
 
-<div id="result" style="margin-top:20px;color:green; display:none;">
-  تم إرسال الطلب بنجاح
+<div id="successMsg" class="message success">
+تم إرسال الطلب بنجاح ✅
 </div>
+
+<div id="errorMsg" class="message error">
+حدث خطأ أثناء الإرسال ❌
+</div>
+
+</form>
 
 </div>
 
 <script>
+
 const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec";
 
-function submitOrder(){
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const date = document.getElementById("date").value;
-  const city = document.getElementById("city").value.trim();
-  const address = document.getElementById("address").value.trim();
-  const product = document.getElementById("product").value.trim();
-  const status = document.getElementById("status").value;
+const form = document.getElementById("orderForm");
+const submitBtn = document.getElementById("submitBtn");
+const successMsg = document.getElementById("successMsg");
+const errorMsg = document.getElementById("errorMsg");
 
-  if(!name || !phone || !date || !city || !address || !product){
-    alert("يرجى ملء جميع الحقول");
-    return;
-  }
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  submitBtn.disabled = true;
+  submitBtn.innerText = "جاري الإرسال...";
+
+  successMsg.style.display = "none";
+  errorMsg.style.display = "none";
+
+  const formData = new FormData(form);
 
   fetch(API_URL, {
     method: "POST",
-    mode: "no-cors",
-    body: new URLSearchParams({
-      name: name,
-      phone: phone,
-      date: date,
-      city: city,
-      address: address,
-      product: product,
-      status: status
-    })
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+      if(data.result === "success"){
+          successMsg.style.display = "block";
+          form.reset();
+      } else {
+          errorMsg.style.display = "block";
+      }
+  })
+  .catch(err => {
+      errorMsg.style.display = "block";
+  })
+  .finally(() => {
+      submitBtn.disabled = false;
+      submitBtn.innerText = "تأكيد الطلب";
   });
 
-  document.getElementById("result").style.display = "block";
+});
 
-  document.getElementById("name").value="";
-  document.getElementById("phone").value="";
-  document.getElementById("date").value="";
-  document.getElementById("city").value="";
-  document.getElementById("address").value="";
-  document.getElementById("product").value="";
-  document.getElementById("status").value="قيد المعالجة";
-}
 </script>
 
 </body>
