@@ -5,41 +5,263 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WDZ | Premium Streetwear</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+:root{
+    --bg:#0b0b0b;
+    --card:#111;
+    --accent:#00ff66;
+    --text:#fff;
+    --muted:#888;
+    --border:#1a1a1a;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Montserrat',sans-serif;
+}
+
+/* HEADER */
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.85);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+    z-index:1000;
+}
+
+.nav{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-family:'Orbitron',sans-serif;
+    font-size:22px;
+    letter-spacing:2px;
+    color:var(--accent);
+}
+
+.nav a{
+    color:var(--text);
+    text-decoration:none;
+    margin-left:25px;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav a:hover{
+    color:var(--accent);
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    background:url("images/tshirt.jpg") center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    position:relative;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+}
+
+.hero-content{
+    position:relative;
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px;
+}
+
+.hero h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    max-width:500px;
+    color:#ccc;
+    margin-bottom:30px;
+    line-height:1.6;
+}
+
+.btn{
+    display:inline-block;
+    padding:18px 40px;
+    background:var(--accent);
+    color:#000;
+    font-weight:800;
+    text-decoration:none;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(0,255,102,.3);
+}
+
+/* FEATURED */
+.section{
+    padding:100px 20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.section-title{
+    font-family:'Orbitron',sans-serif;
+    font-size:28px;
+    margin-bottom:50px;
+}
+
+.product-card{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    background:var(--card);
+    padding:40px;
+    border-radius:20px;
+    border:1px solid var(--border);
+}
+
+.product-card img{
+    width:100%;
+    border-radius:15px;
+}
+
+.product-info h2{
+    margin-bottom:15px;
+}
+
+.price{
+    font-size:24px;
+    color:var(--accent);
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.product-info p{
+    color:var(--muted);
+    margin-bottom:30px;
+    line-height:1.7;
+}
+
+/* TRUST */
+.trust{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+    text-align:center;
+}
+
+.trust-box{
+    padding:30px;
+    border:1px solid var(--border);
+    border-radius:15px;
+}
+
+.trust-box h3{
+    margin-bottom:10px;
+    color:var(--accent);
+}
+
+/* FOOTER */
+footer{
+    border-top:1px solid var(--border);
+    padding:40px 20px;
+    text-align:center;
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .hero h1{font-size:36px}
+    .product-card{grid-template-columns:1fr}
+    .trust{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
+<header>
+    <div class="nav">
+        <div class="logo">WDZ</div>
+        <div>
+            <a href="#">الرئيسية</a>
+            <a href="product.html">المتجر</a>
+            <a href="#">حول العلامة</a>
+        </div>
+    </div>
+</header>
+
 <section class="hero">
-    <div class="container">
-
-        <div class="left">
-            <img src="images/tshirt.jpg" alt="WDZ Premium T-Shirt">
-        </div>
-
-        <div class="right">
-            <h1>WDZ Premium T-Shirt</h1>
-            <div class="price">299 MAD</div>
-
-            <div class="desc">
-                ستريت وير بطابع مستقبلي. قماش ثقيل فاخر. طباعة عالية الجودة مقاومة للغسل.
-                تصميم قوي يعكس هوية WDZ العنيفة والمختلفة.
-            </div>
-
-            <div class="badges">
-                ✔ الدفع عند الاستلام<br>
-                ✔ توصيل لجميع مدن المغرب<br>
-                ✔ إصدار محدود
-            </div>
-
-            <a href="product.html">
-                <button>اطلب الآن</button>
-            </a>
-        </div>
-
+    <div class="hero-content">
+        <h1>WDZ PREMIUM STREETWEAR</h1>
+        <p>هوية جريئة. تصميم مستقبلي. إصدار محدود لمن يرفض العادي.</p>
+        <a href="product.html" class="btn">تسوق الآن</a>
     </div>
 </section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-title">المنتج المميز</div>
+
+        <div class="product-card">
+            <img src="images/tshirt.jpg" alt="">
+            <div class="product-info">
+                <h2>WDZ Premium T-Shirt</h2>
+                <div class="price">299 MAD</div>
+                <p>قماش ثقيل فاخر. طباعة عالية الجودة مقاومة للغسل. تصميم يعكس قوة وهوية WDZ المختلفة.</p>
+                <a href="product.html" class="btn">عرض المنتج</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-title">لماذا WDZ</div>
+
+        <div class="trust">
+            <div class="trust-box">
+                <h3>دفع عند الاستلام</h3>
+                <p>اطلب الآن وادفع عند وصول الطلب.</p>
+            </div>
+            <div class="trust-box">
+                <h3>شحن سريع</h3>
+                <p>توصيل لجميع مدن المغرب.</p>
+            </div>
+            <div class="trust-box">
+                <h3>إصدار محدود</h3>
+                <p>كميات محدودة للحفاظ على التميز.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 WDZ Store. جميع الحقوق محفوظة.
+</footer>
 
 </body>
 </html>
