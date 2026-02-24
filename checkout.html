@@ -90,33 +90,47 @@ function removeItem(index){
 
 renderCart();
 
-document.getElementById("orderForm").addEventListener("submit", function(e){
+document.getElementById("orderForm").addEventListener("submit", async function(e){
   e.preventDefault();
   
   if(cart.length === 0){
-  alert("السلة فارغة 🛒");
-  return;
-}
+    alert("السلة فارغة 🛒");
+    return;
+  }
 
-  fetch("https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec", {
-    method:"POST",
-    mode:"no-cors",
-    body:new URLSearchParams({
-      name:document.getElementById("name").value,
-      phone:document.getElementById("phone").value,
-      city:document.getElementById("city").value,
-      address:document.getElementById("address").value,
-      product: JSON.stringify(cart),
-      total: total
-    })
-  })
-  .then(()=>{
-    localStorage.removeItem("cart");
-    window.location.href="thankyou.html";
-  });
+  const data = {
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    city: document.getElementById("city").value,
+    address: document.getElementById("address").value,
+    cart: cart,
+    total: total
+  };
+
+  try{
+
+    const response = await fetch("/api/submit", {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    if(response.ok){
+      localStorage.removeItem("cart");
+      window.location.href="thankyou.html";
+    }else{
+      alert("❌ حدث خطأ أثناء إرسال الطلب");
+    }
+
+  }catch(error){
+    alert("❌ خطأ في الاتصال بالخادم");
+  }
+
 });
 
 </script>
-
+  
 </body>
 </html>
