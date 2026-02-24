@@ -1,59 +1,159 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orders System</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orders System</title>
 
-    header {
-      background: #111;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f2f2f2;
+}
 
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      background: white;
-      padding: 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+header{
+  background:#111;
+  color:#fff;
+  padding:20px;
+  text-align:center;
+}
 
-    input, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      font-size: 16px;
-    }
+.container{
+  max-width:900px;
+  margin:40px auto;
+  background:#fff;
+  padding:30px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
 
-    button {
-      background: black;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+input, select, button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  font-size:16px;
+}
+
+button{
+  background:#000;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+}
+
+.success{
+  margin-top:20px;
+  padding:15px;
+  background:#e6ffe6;
+  border:1px solid #00aa00;
+  display:none;
+}
+
+table{
+  width:100%;
+  margin-top:30px;
+  border-collapse:collapse;
+}
+
+th, td{
+  border:1px solid #ddd;
+  padding:10px;
+  text-align:center;
+}
+
+th{
+  background:#111;
+  color:#fff;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-  <h1>نظام الطلبات</h1>
+<h1>نظام الطلبات</h1>
 </header>
 
 <div class="container">
-  <h2>إنشاء طلب جديد</h2>
-  <input type="text" placeholder="اسم العميل">
-  <input type="text" placeholder="رقم الهاتف">
-  <input type="text" placeholder="المنتج">
-  <button>تأكيد الطلب</button>
+
+<h2>إنشاء طلب جديد</h2>
+
+<input type="text" id="name" placeholder="اسم العميل">
+<input type="text" id="phone" placeholder="رقم الهاتف">
+<input type="date" id="date">
+<input type="text" id="city" placeholder="المدينة">
+<input type="text" id="address" placeholder="العنوان">
+<input type="text" id="product" placeholder="المنتج">
+
+<select id="status">
+<option value="قيد المعالجة">قيد المعالجة</option>
+<option value="تم الشحن">تم الشحن</option>
+<option value="تم التسليم">تم التسليم</option>
+<option value="ملغي">ملغي</option>
+</select>
+
+<button onclick="submitOrder()">تأكيد الطلب</button>
+
+<div class="success" id="successMessage">
+تم تسجيل الطلب بنجاح
 </div>
+
+<table id="ordersTable">
+<thead>
+<tr>
+<th>الاسم</th>
+<th>الهاتف</th>
+<th>التاريخ</th>
+<th>المدينة</th>
+<th>العنوان</th>
+<th>المنتج</th>
+<th>الحالة</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+</div>
+
+<script>
+function submitOrder(){
+
+const name = document.getElementById("name").value.trim();
+const phone = document.getElementById("phone").value.trim();
+const date = document.getElementById("date").value;
+const city = document.getElementById("city").value.trim();
+const address = document.getElementById("address").value.trim();
+const product = document.getElementById("product").value.trim();
+const status = document.getElementById("status").value;
+
+if(!name || !phone || !date || !city || !address || !product){
+  alert("يرجى ملء جميع الحقول");
+  return;
+}
+
+const table = document.getElementById("ordersTable").getElementsByTagName("tbody")[0];
+const newRow = table.insertRow();
+
+newRow.insertCell(0).innerText = name;
+newRow.insertCell(1).innerText = phone;
+newRow.insertCell(2).innerText = date;
+newRow.insertCell(3).innerText = city;
+newRow.insertCell(4).innerText = address;
+newRow.insertCell(5).innerText = product;
+newRow.insertCell(6).innerText = status;
+
+document.getElementById("successMessage").style.display = "block";
+
+document.getElementById("name").value="";
+document.getElementById("phone").value="";
+document.getElementById("date").value="";
+document.getElementById("city").value="";
+document.getElementById("address").value="";
+document.getElementById("product").value="";
+document.getElementById("status").value="قيد المعالجة";
+}
+</script>
 
 </body>
 </html>
