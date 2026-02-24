@@ -3,87 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>إتمام الطلب</title>
+<title>WDZ | إتمام الطلب</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
 <style>
-body{margin:0;font-family:Arial;background:#f4f4f4}
-.container{max-width:800px;margin:50px auto;background:#fff;padding:30px;border-radius:10px}
-input,select,button{width:100%;padding:12px;margin-bottom:15px}
-button{background:#000;color:#fff;border:none;cursor:pointer}
-.summary{font-weight:bold;margin-bottom:20px}
+:root{
+    --bg:#0A0A0A;
+    --card:#111111;
+    --neon:#00FF66;
+    --text:#ffffff;
+    --muted:#8a8a8a;
+    --border:#1c1c1c;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Montserrat',sans-serif;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:80px 20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+}
+
+.card{
+    background:var(--card);
+    padding:30px;
+    border-radius:18px;
+    border:1px solid var(--border);
+}
+
+h2{
+    font-family:'Orbitron',sans-serif;
+    margin-bottom:25px;
+}
+
+.summary-item{
+    margin-bottom:12px;
+    color:var(--muted);
+}
+
+.summary-total{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:700;
+    color:var(--neon);
+}
+
+input,select{
+    width:100%;
+    padding:14px;
+    margin-bottom:18px;
+    background:#0f0f0f;
+    border:1px solid var(--border);
+    color:var(--text);
+    border-radius:10px;
+}
+
+button{
+    width:100%;
+    padding:18px;
+    background:var(--neon);
+    border:none;
+    font-weight:800;
+    font-size:16px;
+    cursor:pointer;
+    border-radius:12px;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+.trust{
+    margin-top:20px;
+    font-size:14px;
+    color:var(--muted);
+    line-height:1.8;
+}
+
+@media(max-width:900px){
+    .grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
 <div class="container">
-<h2>إتمام الطلب</h2>
 
-<div class="summary" id="summary"></div>
+<div class="grid">
 
-<form id="orderForm">
+<!-- ORDER SUMMARY -->
+<div class="card">
+    <h2>ملخص الطلب</h2>
+    <div id="productName" class="summary-item"></div>
+    <div id="productSize" class="summary-item"></div>
+    <div id="productColor" class="summary-item"></div>
+    <div id="productQty" class="summary-item"></div>
+    <div id="productTotal" class="summary-total"></div>
+</div>
 
-<input type="text" name="name" placeholder="الاسم الكامل" required>
-<input type="text" name="phone" placeholder="رقم الهاتف" required>
-<input type="text" name="city" placeholder="المدينة" required>
-<input type="text" name="address" placeholder="العنوان الكامل" required>
+<!-- CUSTOMER FORM -->
+<div class="card">
+    <h2>معلومات العميل</h2>
 
-<select name="size" required>
-<option value="">اختر المقاس</option>
-<option>S</option>
-<option>M</option>
-<option>L</option>
-<option>XL</option>
-</select>
+    <form id="orderForm">
 
-<select name="color" required>
-<option value="">اختر اللون</option>
-<option>Black</option>
-<option>White</option>
-<option>Green</option>
-</select>
+        <input type="text" name="name" placeholder="الاسم الكامل" required>
+        <input type="text" name="phone" placeholder="رقم الهاتف" required>
+        <input type="text" name="city" placeholder="المدينة" required>
+        <input type="text" name="address" placeholder="العنوان الكامل" required>
 
-<input type="number" name="quantity" id="qty" value="1" min="1" required>
+        <button type="submit">تأكيد الطلب</button>
 
-<div id="total"></div>
+    </form>
 
-<button type="submit">تأكيد الطلب</button>
+    <div class="trust">
+        ✔ الدفع عند الاستلام<br>
+        ✔ توصيل سريع لجميع مدن المغرب<br>
+        ✔ سيتم التواصل خلال 24 ساعة
+    </div>
+</div>
 
-</form>
+</div>
 </div>
 
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec";
 
-const params = new URLSearchParams(window.location.search);
-const product = params.get("product");
-const price = parseInt(params.get("price"));
+const order = JSON.parse(localStorage.getItem("order"));
 
-document.getElementById("summary").innerText = product + " - السعر: " + price + " MAD";
+if(order){
+    const total = order.price * order.quantity;
 
-const qtyInput = document.getElementById("qty");
-const totalDiv = document.getElementById("total");
-
-function updateTotal(){
-totalDiv.innerText = "المجموع: " + (price * qtyInput.value) + " MAD";
+    document.getElementById("productName").innerText = "المنتج: " + order.name;
+    document.getElementById("productSize").innerText = "المقاس: " + order.size;
+    document.getElementById("productColor").innerText = "اللون: " + order.color;
+    document.getElementById("productQty").innerText = "الكمية: " + order.quantity;
+    document.getElementById("productTotal").innerText = "المجموع: " + total + " MAD";
 }
-updateTotal();
-qtyInput.addEventListener("input", updateTotal);
 
 document.getElementById("orderForm").addEventListener("submit", function(e){
-e.preventDefault();
+    e.preventDefault();
 
-const formData = new FormData(this);
-formData.append("product", product);
-formData.append("status", "قيد المعالجة");
-formData.append("date", new Date().toISOString().split("T")[0]);
+    const formData = new FormData(this);
 
-fetch(API_URL,{
-method:"POST",
-body:formData
-})
-.then(res=>res.json())
-.then(data=>{
-window.location.href="thankyou.html";
-});
+    formData.append("product", order.name);
+    formData.append("size", order.size);
+    formData.append("color", order.color);
+    formData.append("quantity", order.quantity);
+    formData.append("price", order.price * order.quantity);
+    formData.append("status", "قيد المعالجة");
+    formData.append("date", new Date().toISOString().split("T")[0]);
+
+    fetch(API_URL,{
+        method:"POST",
+        body:formData
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        localStorage.removeItem("order");
+        window.location.href="thankyou.html";
+    });
 });
 </script>
 
