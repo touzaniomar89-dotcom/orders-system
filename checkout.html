@@ -2,57 +2,32 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checkout</title>
-<style>
-body{margin:0;font-family:Arial;background:#f4f4f4}
-.container{max-width:800px;margin:40px auto;background:#fff;padding:30px;border-radius:10px}
-input,button{width:100%;padding:12px;margin-bottom:15px}
-button{background:#000;color:#fff;border:none;cursor:pointer}
-.summary{font-weight:bold;margin-bottom:20px}
-</style>
 </head>
 <body>
 
-<div class="container">
 <h2>إتمام الطلب</h2>
 
-<div class="summary" id="summary"></div>
-
 <form id="checkoutForm">
-<input type="text" name="name" placeholder="الاسم الكامل" required>
-<input type="text" name="phone" placeholder="رقم الهاتف" required>
+<input type="text" name="name" placeholder="الاسم" required>
+<input type="text" name="phone" placeholder="الهاتف" required>
 <input type="text" name="city" placeholder="المدينة" required>
-<input type="text" name="address" placeholder="العنوان الكامل" required>
+<input type="text" name="address" placeholder="العنوان" required>
 
 <button type="submit">تأكيد الطلب</button>
 </form>
-</div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec";
+const API_URL = "ضع رابط Google Script هنا";
 
 const params = new URLSearchParams(window.location.search);
-
-const product = params.get("product");
-const price = parseInt(params.get("price"));
-const size = params.get("size");
-const color = params.get("color");
-const quantity = parseInt(params.get("quantity"));
-
-const total = price * quantity;
-
-document.getElementById("summary").innerText =
-product + " | " + size + " | " + color + " | الكمية: " + quantity + " | المجموع: " + total + " MAD";
 
 document.getElementById("checkoutForm").addEventListener("submit", function(e){
 e.preventDefault();
 
 const formData = new FormData(this);
-formData.append("product", product);
-formData.append("size", size);
-formData.append("color", color);
-formData.append("quantity", quantity);
+formData.append("product", params.get("product"));
+formData.append("quantity", params.get("quantity"));
 formData.append("status", "قيد المعالجة");
 formData.append("date", new Date().toISOString().split("T")[0]);
 
