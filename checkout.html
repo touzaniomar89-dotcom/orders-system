@@ -51,7 +51,7 @@ button.loading{opacity:.7;pointer-events:none;}
 
 <div id="content"></div>
 
-<script>
+<<script>
 const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec"; 
 const order = JSON.parse(localStorage.getItem("order"));
 
@@ -100,34 +100,35 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
     btn.classList.add("loading");
     btn.innerText = "جارٍ الإرسال...";
 
-    const formData = new FormData(this);
-    formData.append("product", order.name);
-    formData.append("size", order.size);
-    formData.append("color", order.color);
-    formData.append("quantity", order.quantity);
-    formData.append("price", order.price * order.quantity);
-    formData.append("status", "قيد المعالجة");
+    const payload = {
+        name: this.name.value,
+        phone: this.phone.value,
+        city: this.city.value,
+        address: this.address.value,
+        product: order.name,
+        size: order.size,
+        color: order.color,
+        quantity: order.quantity,
+        price: order.price * order.quantity,
+        status: "قيد المعالجة"
+    };
 
     try{
         const response = await fetch(API_URL,{
             method:"POST",
-            body:formData
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(payload)
         });
 
-        const text = await response.text();
-        let data;
-
-        try{
-            data = JSON.parse(text);
-        }catch{
-            throw new Error("Invalid JSON response");
-        }
+        const data = await response.json();
 
         if(data.success){
             localStorage.removeItem("order");
             window.location.href="thankyou.html";
         }else{
-            throw new Error("Server returned error");
+            throw new Error("Server error");
         }
 
     }catch(error){
