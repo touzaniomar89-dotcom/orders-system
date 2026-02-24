@@ -3,19 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تم استلام طلبك</title>
+<title>WDZ | تم استلام طلبك</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
 <style>
-body{margin:0;font-family:Arial;background:#111;color:#fff;text-align:center;padding:100px}
-a{color:#0f0;text-decoration:none;font-size:18px}
+:root{
+    --bg:#0A0A0A;
+    --card:#111111;
+    --neon:#00FF66;
+    --text:#ffffff;
+    --muted:#8a8a8a;
+    --border:#1c1c1c;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Montserrat',sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.card{
+    background:var(--card);
+    padding:50px 40px;
+    border-radius:20px;
+    border:1px solid var(--border);
+    text-align:center;
+    max-width:600px;
+    width:100%;
+}
+
+h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+.order-id{
+    color:var(--neon);
+    font-weight:700;
+    margin:15px 0 25px 0;
+    font-size:18px;
+}
+
+p{
+    color:var(--muted);
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+button{
+    padding:16px 35px;
+    background:var(--neon);
+    border:none;
+    font-weight:800;
+    font-size:15px;
+    cursor:pointer;
+    border-radius:12px;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
 </style>
 </head>
 <body>
 
-<h1>تم استلام طلبك</h1>
-<p>سنتصل بك خلال وقت قصير لتأكيد الطلب.</p>
+<div class="card">
 
-<br>
-<a href="index.html">العودة للمتجر</a>
+    <h1>تم استلام طلبك</h1>
+
+    <div class="order-id" id="orderId"></div>
+
+    <p>
+        شكرًا لاختيارك WDZ.<br>
+        سيتم التواصل معك خلال 24 ساعة لتأكيد الطلب.<br>
+        الدفع عند الاستلام.
+    </p>
+
+    <button onclick="goHome()">العودة للرئيسية</button>
+
+</div>
+
+<script>
+const orderNumber = "WDZ-" + Math.floor(Math.random() * 1000000);
+document.getElementById("orderId").innerText = "رقم الطلب: " + orderNumber;
+
+function goHome(){
+    window.location.href = "index.html";
+}
+</script>
 
 </body>
 </html>
