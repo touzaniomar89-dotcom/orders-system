@@ -3,22 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Orders System</title>
+<title>نظام الطلبات</title>
 
 <style>
 body{
   margin:0;
-  font-family:Arial, sans-serif;
+  font-family:Arial;
   background:#f2f2f2;
 }
-
 header{
   background:#111;
   color:#fff;
   padding:20px;
   text-align:center;
 }
-
 .container{
   max-width:900px;
   margin:40px auto;
@@ -26,23 +24,17 @@ header{
   padding:30px;
   box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
-
 input, select, button{
   width:100%;
   padding:12px;
   margin-top:10px;
   font-size:16px;
 }
-
 button{
   background:#000;
   color:#fff;
   border:none;
   cursor:pointer;
-}
-
-button:hover{
-  opacity:0.9;
 }
 </style>
 </head>
@@ -65,13 +57,17 @@ button:hover{
 <input type="text" id="product" placeholder="المنتج">
 
 <select id="status">
-<option value="قيد المعالجة">قيد المعالجة</option>
-<option value="تم الشحن">تم الشحن</option>
-<option value="تم التسليم">تم التسليم</option>
-<option value="ملغي">ملغي</option>
+  <option value="قيد المعالجة">قيد المعالجة</option>
+  <option value="تم الشحن">تم الشحن</option>
+  <option value="تم التسليم">تم التسليم</option>
+  <option value="ملغي">ملغي</option>
 </select>
 
 <button onclick="submitOrder()">تأكيد الطلب</button>
+
+<div id="result" style="margin-top:20px;color:green; display:none;">
+  تم إرسال الطلب بنجاح
+</div>
 
 </div>
 
@@ -79,45 +75,42 @@ button:hover{
 const API_URL = "https://script.google.com/macros/s/AKfycbynLcGw4Otvlxt85Q-Qqc1XKkQzmW1DKdUzR_cwbvEUFkp9Dd04MkATMfTqyVLmWs7GSg/exec";
 
 function submitOrder(){
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const date = document.getElementById("date").value;
+  const city = document.getElementById("city").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const product = document.getElementById("product").value.trim();
+  const status = document.getElementById("status").value;
 
-const name = document.getElementById("name").value.trim();
-const phone = document.getElementById("phone").value.trim();
-const date = document.getElementById("date").value;
-const city = document.getElementById("city").value.trim();
-const address = document.getElementById("address").value.trim();
-const product = document.getElementById("product").value.trim();
+  if(!name || !phone || !date || !city || !address || !product){
+    alert("يرجى ملء جميع الحقول");
+    return;
+  }
 
-if(!name || !phone || !date || !city || !address || !product){
-  alert("يرجى ملء جميع الحقول");
-  return;
-}
+  fetch(API_URL, {
+    method: "POST",
+    mode: "no-cors",
+    body: new URLSearchParams({
+      name: name,
+      phone: phone,
+      date: date,
+      city: city,
+      address: address,
+      product: product,
+      status: status
+    })
+  });
 
-fetch(API_URL, {
-  method: "POST",
-  mode: "no-cors",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded"
-  },
-  body: new URLSearchParams({
-    name: name,
-    phone: phone,
-    city: city,
-    address: address,
-    product: product
-  })
-})
-.then(() => {
-  alert("تم إرسال الطلب بنجاح");
+  document.getElementById("result").style.display = "block";
+
   document.getElementById("name").value="";
   document.getElementById("phone").value="";
   document.getElementById("date").value="";
   document.getElementById("city").value="";
   document.getElementById("address").value="";
   document.getElementById("product").value="";
-})
-.catch(() => {
-  alert("حدث خطأ أثناء الإرسال");
-});
+  document.getElementById("status").value="قيد المعالجة";
 }
 </script>
 
