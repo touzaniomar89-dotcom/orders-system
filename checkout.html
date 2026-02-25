@@ -6,25 +6,40 @@
 <title>Checkout</title>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
 <div class="container">
 
-  <h2>ملخص الطلب</h2>
-  <div id="summaryBox"></div>
+<h2>ملخص الطلب</h2>
+<div id="summaryBox"></div>
 
-  <h2>معلومات الزبون</h2>
+<h2>معلومات الزبون</h2>
 
-  <form id="checkoutForm">
-    <input id="name" placeholder="الاسم الكامل" required>
-    <input id="phone" placeholder="رقم الهاتف" required>
-    <input id="city" placeholder="المدينة" required>
-    <input id="address" placeholder="العنوان الكامل" required>
-    <button type="submit">تأكيد الطلب</button>
-  </form>
+<form id="checkoutForm">
+
+<input id="name" placeholder="الاسم الكامل" required>
+<input id="phone" placeholder="رقم الهاتف" required>
+<input id="city" placeholder="المدينة" required>
+<input id="address" placeholder="العنوان الكامل" required>
+
+<button type="submit">تأكيد الطلب</button>
+
+</form>
 
 </div>
 
 <script src="assets/js/main.js"></script>
+
+<script>
+
+// منع الريفريش وربط الفورم بالـ submitOrder
+document.getElementById("checkoutForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  submitOrder();
+});
+
+</script>
+
 </body>
 </html>
