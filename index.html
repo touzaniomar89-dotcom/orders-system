@@ -1,23 +1,55 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WDZ - World of the Death Zone</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WDZ | WORLD OF THE DEATH ZONE</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>WDZ</h1>
-        <p>عالم منطقة الموت</p>
-    </header>
-    <main>
-        <section class="hero">
-            <h2>أهلاً بكم في WDZ</h2>
-            <p>تسوق الآن أحدث المنتجات</p>
-            <a href="product.html" class="btn">تسوق الآن</a>
-        </section>
-    </main>
-    <script src="assets/js/main.js"></script>
+
+<header class="navbar">
+  <div class="logo">WDZ</div>
+  <div class="cart-icon">
+    Cart (<span id="cart-count">0</span>)
+  </div>
+</header>
+
+<section class="hero">
+  <h1>ENTER THE FUTURE OF STREETWEAR</h1>
+  <p>WORLD OF THE DEATH ZONE</p>
+  <a href="#products" class="btn">Shop Now</a>
+</section>
+
+<section id="products" class="products">
+  <div class="product-card">
+    <img src="assets/hoodie.jpg" alt="WDZ Hoodie">
+    <h2>WDZ Premium Hoodie</h2>
+    <p class="price" data-price="599">599 MAD</p>
+
+    <select class="size">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+
+    <select class="color">
+      <option value="Black">Black</option>
+      <option value="White">White</option>
+    </select>
+
+    <input type="number" class="quantity" value="1" min="1">
+
+    <button class="btn add-to-cart">Add to Cart</button>
+  </div>
+</section>
+
+<section class="about">
+  <h2>About WDZ</h2>
+  <p>Premium futuristic streetwear designed in Morocco.</p>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
