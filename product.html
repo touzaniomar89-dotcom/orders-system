@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product</title>
-<link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختر المنتج - WDZ</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <header>
+        <h1>WDZ</h1>
+    </header>
+    <main class="product-page">
+        <div class="product-image">
+            <img src="https://via.placeholder.com/300" alt="منتج">
+        </div>
+        <div class="product-details">
+            <h2>تيشيرت WDZ</h2>
+            <p class="price">٤٩٫٩٩ ر.س</p>
+            <div class="options">
+                <label for="size">المقاس</label>
+                <select id="size">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
 
-<div class="container">
-  <h2>WDZ Hoodie</h2>
-  <p class="price">299 MAD</p>
+                <label for="color">اللون</label>
+                <select id="color">
+                    <option value="أسود">أسود</option>
+                    <option value="أبيض">أبيض</option>
+                    <option value="رمادي">رمادي</option>
+                </select>
 
-  <label>المقاس</label>
-  <select id="size">
-    <option>S</option>
-    <option>M</option>
-    <option>L</option>
-    <option>XL</option>
-  </select>
-
-  <label>اللون</label>
-  <select id="color">
-    <option>Black</option>
-    <option>Green</option>
-  </select>
-
-  <label>الكمية</label>
-  <input type="number" id="quantity" value="1" min="1">
-
-  <button onclick="buyNow()">اشتر الآن</button>
-</div>
-
-<script src="assets/js/main.js"></script>
+                <label for="quantity">الكمية</label>
+                <input type="number" id="quantity" value="1" min="1" max="10">
+            </div>
+            <button id="checkout-btn" class="btn">متابعة</button>
+        </div>
+    </main>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
