@@ -1,42 +1,46 @@
-document.addEventListener("DOMContentLoaded", function () {
+// ===============================
+// WDZ ORDER SYSTEM
+// ===============================
 
-  const form = document.getElementById("orderForm");
+async function submitOrder() {
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  const orderData = {
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    city: document.getElementById("city").value,
+    address: document.getElementById("address").value,
+    product: localStorage.getItem("selectedProduct") || "WDZ Product",
+    size: document.getElementById("size").value,
+    color: document.getElementById("color").value,
+    quantity: document.getElementById("quantity").value,
+    total: localStorage.getItem("totalPrice") || 0
+  };
 
-    const orderData = {
-      name: document.getElementById("name").value,
-      phone: document.getElementById("phone").value,
-      city: document.getElementById("city").value,
-      address: document.getElementById("address").value,
-      product: document.getElementById("product").value,
-      size: document.getElementById("size").value,
-      color: document.getElementById("color").value,
-      quantity: document.getElementById("quantity").value,
-      total: document.getElementById("total").value
-    };
+  try {
 
-    fetch("https://script.google.com/macros/s/AKfycbxyCmZ7W1k-xW361TttJ2SZT1QoYjA16TGy4Negnq2VkVBKS25E-pbTF1tTBuPefXvDcg/exec", {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbzH9B-vHsSakvfwCKVDPjvq0U7CRz8AMkWY-5Xjj9ypRf3hCwdGwSij9UnYKhUsBNLx2w/exec", {
       method: "POST",
-      body: new URLSearchParams({
-        data: JSON.stringify(orderData)
-      })
-    })
-    .then(res => res.text())
-    .then(response => {
-      if (response === "success") {
-        alert("✅ تم إرسال الطلب بنجاح");
-        form.reset();
-      } else {
-        alert("❌ وقع خطأ، حاول مرة أخرى");
-      }
-    })
-    .catch(error => {
-      alert("❌ خطأ في الاتصال بالسيرفر");
-      console.error(error);
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(orderData)
     });
 
-  });
+    const result = await response.json();
 
-});
+    if (result.success) {
+
+      localStorage.removeItem("selectedProduct");
+      localStorage.removeItem("totalPrice");
+
+      window.location.href = "thankyou.html";
+
+    } else {
+      alert("Error sending order.");
+    }
+
+  } catch (error) {
+    alert("Connection error.");
+    console.error(error);
+  }
+}
