@@ -1,70 +1,19 @@
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  font-family: Arial, sans-serif;
-  background:#0A0A0A;
-  color:#FFFFFF;
-}
-
-.navbar {
-  display:flex;
-  justify-content:space-between;
-  padding:20px;
-  background:#111;
-}
-
-.logo {
-  color:#39FF14;
-  font-weight:bold;
-  font-size:24px;
-}
-
-.hero {
-  text-align:center;
-  padding:100px 20px;
-}
-
-.hero h1 {
-  font-size:40px;
-  margin-bottom:20px;
-}
-
-.btn {
-  background:#39FF14;
-  color:#000;
-  padding:10px 20px;
-  text-decoration:none;
-  display:inline-block;
-  margin-top:20px;
-  cursor:pointer;
-  border:none;
-}
-
-.products {
-  padding:50px 20px;
-  display:flex;
-  justify-content:center;
-}
-
-.product-card {
-  background:#111;
-  padding:20px;
-  width:300px;
-  text-align:center;
-}
-
-.product-card img {
-  width:100%;
-  margin-bottom:15px;
-}
-
-select, input {
-  width:100%;
-  padding:8px;
-  margin:5px 0;
-}
-
-.about {
-  padding:50px 20px;
-  text-align:center;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial;background:#0A0A0A;color:#fff}
+a{text-decoration:none;color:#39FF14}
+.navbar{display:flex;justify-content:space-between;padding:20px;background:#111}
+.logo{font-size:24px;font-weight:bold;color:#39FF14}
+.hero{text-align:center;padding:120px 20px}
+.hero h1{font-size:42px;margin-bottom:20px}
+.btn{background:#39FF14;color:#000;padding:12px 25px;border:none;cursor:pointer}
+.btn-outline{border:1px solid #39FF14;padding:10px 20px;color:#39FF14}
+.products{padding:60px 20px;display:flex;justify-content:center}
+.product-card{background:#111;padding:20px;width:300px;text-align:center}
+.product-card img{width:100%;margin-bottom:15px}
+.product-page{display:flex;gap:40px;padding:60px}
+.product-page img{width:400px}
+.product-info{max-width:400px}
+select,input{width:100%;padding:10px;margin:10px 0;background:#111;color:#fff;border:1px solid #333}
+.checkout{padding:60px;max-width:600px;margin:auto}
+#order-summary{margin-bottom:20px}
+.cod-box{background:#111;padding:15px;margin:20px 0}
