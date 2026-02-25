@@ -3,290 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WDZ | Premium Hoodie</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-
+<title>WDZ | المنتج</title>
 <style>
-:root{
-    --bg:#0b0b0b;
-    --card:#111;
-    --accent:#00ff66;
-    --text:#fff;
-    --muted:#888;
-    --border:#1a1a1a;
-}
-
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Montserrat',sans-serif;
-}
-
-/* HEADER */
-header{
-    position:fixed;
-    top:0;
-    width:100%;
-    background:rgba(0,0,0,.9);
-    border-bottom:1px solid var(--border);
-    z-index:1000;
-}
-
-.nav{
-    max-width:1200px;
-    margin:auto;
-    padding:18px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    font-family:'Orbitron',sans-serif;
-    letter-spacing:2px;
-    color:var(--accent);
-}
-
-.nav a{
-    color:#fff;
-    text-decoration:none;
-    margin-left:25px;
-    font-size:14px;
-}
-
-/* LAYOUT */
-.wrapper{
-    max-width:1200px;
-    margin:120px auto 80px;
-    padding:0 20px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:70px;
-}
-
-.gallery img{
-    width:100%;
-    border-radius:18px;
-}
-
-.thumbs{
-    display:flex;
-    gap:12px;
-    margin-top:15px;
-}
-
-.thumbs img{
-    width:80px;
-    border-radius:10px;
-    cursor:pointer;
-    opacity:.6;
-    transition:.3s;
-}
-
-.thumbs img:hover{
-    opacity:1;
-}
-
-/* PRODUCT INFO */
-h1{
-    font-family:'Orbitron',sans-serif;
-    font-size:34px;
-    margin-bottom:15px;
-}
-
-.price{
-    font-size:26px;
-    color:var(--accent);
-    font-weight:800;
-    margin-bottom:20px;
-}
-
-.desc{
-    color:var(--muted);
-    line-height:1.7;
-    margin-bottom:30px;
-}
-
-/* OPTIONS */
-.option-title{
-    margin-bottom:10px;
-    font-weight:600;
-}
-
-.options{
-    display:flex;
-    gap:10px;
-    margin-bottom:25px;
-}
-
-.option-btn{
-    padding:10px 18px;
-    border:1px solid var(--border);
-    border-radius:8px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.option-btn.active,
-.option-btn:hover{
-    border-color:var(--accent);
-    color:var(--accent);
-}
-
-.qty input{
-    width:80px;
-    padding:10px;
-    background:#0f0f0f;
-    border:1px solid var(--border);
-    color:#fff;
-    border-radius:8px;
-}
-
-/* BUTTON */
-.btn{
-    display:block;
-    width:100%;
-    padding:18px;
-    background:var(--accent);
-    color:#000;
-    font-weight:800;
-    text-align:center;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    transition:.3s;
-    margin-top:25px;
-}
-
-.btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(0,255,102,.3);
-}
-
-/* TRUST */
-.trust{
-    margin-top:35px;
-    color:var(--muted);
-    font-size:14px;
-    line-height:1.8;
-    border-top:1px solid var(--border);
-    padding-top:20px;
-}
-
-@media(max-width:900px){
-    .wrapper{grid-template-columns:1fr}
-}
+body{margin:0;background:#0b0b0b;color:#fff;font-family:Montserrat;text-align:center}
+.card{margin-top:100px}
+button{padding:15px 40px;background:#00ff66;border:none;font-weight:800;border-radius:10px}
+select{padding:10px;margin:10px}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="nav">
-    <div class="logo">WDZ</div>
-    <div>
-      <a href="index.html">الرئيسية</a>
-      <a href="product.html">المنتج</a>
-      <a href="checkout.html">الدفع</a>
-    </div>
-  </div>
-</header>
+<div class="card">
+<h1>WDZ Premium Hoodie</h1>
+<p>399 MAD</p>
 
-<div class="wrapper">
+<select id="size">
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+</select>
 
-    <!-- GALLERY -->
-    <div class="gallery">
-        <img id="mainImage" src="images/hoodie1.jpg" alt="">
-        <div class="thumbs">
-            <img src="images/hoodie1.jpg" onclick="changeImage(this)">
-            <img src="images/hoodie2.jpg" onclick="changeImage(this)">
-            <img src="images/hoodie3.jpg" onclick="changeImage(this)">
-        </div>
-    </div>
+<select id="color">
+<option>Black</option>
+<option>Green</option>
+</select>
 
-    <!-- INFO -->
-    <div>
-        <h1>WDZ Premium Hoodie</h1>
-        <div class="price" id="unitPrice">399 MAD</div>
-
-        <div class="desc">
-            خامة ثقيلة فاخرة. طباعة عالية الجودة مقاومة للغسل. تصميم جريء بإصدار محدود.
-        </div>
-
-        <div class="option-title">المقاس</div>
-        <div class="options" id="sizes">
-            <div class="option-btn active">S</div>
-            <div class="option-btn">M</div>
-            <div class="option-btn">L</div>
-            <div class="option-btn">XL</div>
-        </div>
-
-        <div class="option-title">اللون</div>
-        <div class="options" id="colors">
-            <div class="option-btn active">Black</div>
-            <div class="option-btn">Neon Green</div>
-        </div>
-
-        <div class="option-title">الكمية</div>
-        <div class="qty">
-            <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()">
-        </div>
-
-        <div class="price" style="margin-top:20px;">
-            المجموع: <span id="total">399 MAD</span>
-        </div>
-
-        <button class="btn" onclick="goCheckout()">إتمام الطلب</button>
-
-        <div class="trust">
-            ✔ الدفع عند الاستلام<br>
-            ✔ توصيل سريع لجميع مدن المغرب<br>
-            ✔ ضمان جودة 100%<br>
-            ✔ كمية محدودة
-        </div>
-    </div>
-
+<br><br>
+<button onclick="addToCart()">اشتري الآن</button>
 </div>
 
 <script>
-const price = 399;
-
-function updateTotal(){
-    const qty = parseInt(document.getElementById("quantity").value);
-    document.getElementById("total").innerText = (price * qty) + " MAD";
-}
-
-function changeImage(el){
-    document.getElementById("mainImage").src = el.src;
-}
-
-document.querySelectorAll(".options").forEach(group=>{
-    group.querySelectorAll(".option-btn").forEach(btn=>{
-        btn.addEventListener("click",()=>{
-            group.querySelectorAll(".option-btn").forEach(b=>b.classList.remove("active"));
-            btn.classList.add("active");
-        });
-    });
-});
-
-function goCheckout(){
-    const size = document.querySelector("#sizes .active").innerText;
-    const color = document.querySelector("#colors .active").innerText;
-    const quantity = document.getElementById("quantity").value;
-
-    const data = {
-        name:"WDZ Premium Hoodie",
-        price:price,
-        size:size,
-        color:color,
-        quantity:quantity
-    };
-
-    localStorage.setItem("order",JSON.stringify(data));
-    window.location.href="checkout.html";
+function addToCart(){
+const order = {
+name:"WDZ Premium Hoodie",
+price:399,
+size:document.getElementById("size").value,
+color:document.getElementById("color").value,
+quantity:1
+};
+localStorage.setItem("order",JSON.stringify(order));
+window.location.href="checkout.html";
 }
 </script>
 
