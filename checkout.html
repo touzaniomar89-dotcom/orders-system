@@ -122,14 +122,21 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
 
   try{
 
-    await fetch(API_URL,{
-      method:"POST",
-      mode:"no-cors", // 🔥 مهم جدا لتفادي CORS
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body: JSON.stringify(payload)
-    });
+  await fetch(API_URL,{
+    method:"POST",
+    body: JSON.stringify(payload)
+  });
+
+  localStorage.removeItem("order");
+  window.location.href="thankyou.html";
+
+}catch(error){
+  alert("حدث خطأ أثناء إرسال الطلب");
+  console.error(error);
+
+  btn.classList.remove("loading");
+  btn.innerText="تأكيد الطلب";
+}
 
     // حذف الطلب من التخزين
     localStorage.removeItem("order");
