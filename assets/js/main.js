@@ -1,4 +1,4 @@
-const API_URL = 'https://script.google.com/macros/s/AKfycbzH9B-vHsSakvfwCKVDPjvq0U7CRz8AMkWY-5Xjj9ypRf3hCwdGwSij9UnYKhUsBNLx2w/exec'; // Replace with your deployed URL
+const API_URL = 'https://script.google.com/macros/s/AKfycbzH9B-vHsSakvfwCKVDPjvq0U7CRz8AMkWY-5Xjj9ypRf3hCwdGwSij9UnYKhUsBNLx2w/exec';
 
 // Cart functions
 function getCart() {
