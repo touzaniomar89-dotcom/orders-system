@@ -1,44 +1,46 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اختر المنتج - WDZ</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WDZ Hoodie</title>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>
-        <h1>WDZ</h1>
-    </header>
-    <main class="product-page">
-        <div class="product-image">
-            <img src="https://via.placeholder.com/300" alt="منتج">
-        </div>
-        <div class="product-details">
-            <h2>تيشيرت WDZ</h2>
-            <p class="price">٤٩٫٩٩ ر.س</p>
-            <div class="options">
-                <label for="size">المقاس</label>
-                <select id="size">
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                </select>
 
-                <label for="color">اللون</label>
-                <select id="color">
-                    <option value="أسود">أسود</option>
-                    <option value="أبيض">أبيض</option>
-                    <option value="رمادي">رمادي</option>
-                </select>
+<header class="navbar">
+  <div class="logo">WDZ</div>
+  <a href="checkout.html">Cart (<span id="cart-count">0</span>)</a>
+</header>
 
-                <label for="quantity">الكمية</label>
-                <input type="number" id="quantity" value="1" min="1" max="10">
-            </div>
-            <button id="checkout-btn" class="btn">متابعة</button>
-        </div>
-    </main>
-    <script src="assets/js/main.js"></script>
+<section class="product-page">
+  <img src="assets/img/hoodie.jpg" alt="Hoodie">
+
+  <div class="product-info">
+    <h1>WDZ Premium Hoodie</h1>
+    <p class="price" data-price="599">599 MAD</p>
+
+    <label>Size</label>
+    <select id="size">
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+    </select>
+
+    <label>Color</label>
+    <select id="color">
+      <option>Black</option>
+      <option>White</option>
+    </select>
+
+    <label>Quantity</label>
+    <input type="number" id="quantity" value="1" min="1">
+
+    <button class="btn" id="add-to-cart">Add to Cart</button>
+  </div>
+</section>
+
+<script src="assets/js/script.js"></script>
 </body>
 </html>
