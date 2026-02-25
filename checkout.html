@@ -3,158 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WDZ | Checkout</title>
-
-<style>
-body{
-  margin:0;
-  background:#0b0b0b;
-  color:#fff;
-  font-family:Arial;
-  text-align:center;
-}
-.container{
-  max-width:500px;
-  margin:80px auto;
-}
-input{
-  width:100%;
-  padding:14px;
-  margin-bottom:15px;
-  border-radius:8px;
-  border:1px solid #222;
-  background:#111;
-  color:#fff;
-}
-button{
-  width:100%;
-  padding:16px;
-  background:#00ff66;
-  border:none;
-  font-weight:bold;
-  cursor:pointer;
-}
-button.loading{
-  opacity:.6;
-  pointer-events:none;
-}
-.summary{
-  margin-bottom:30px;
-  background:#111;
-  padding:20px;
-  border-radius:10px;
-}
-.total{
-  color:#00ff66;
-  font-size:20px;
-  font-weight:bold;
-}
-</style>
+<title>Checkout</title>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
 <div class="container">
 
-<h1>إتمام الطلب</h1>
+  <h2>ملخص الطلب</h2>
+  <div id="summaryBox"></div>
 
-<div id="summaryBox"></div>
+  <h2>معلومات الزبون</h2>
 
-<form id="orderForm">
-<input type="text" name="name" placeholder="الاسم الكامل" required>
-<input type="text" name="phone" placeholder="رقم الهاتف" required>
-<input type="text" name="city" placeholder="المدينة" required>
-<input type="text" name="address" placeholder="العنوان الكامل" required>
-<button type="submit" id="submitBtn">تأكيد الطلب</button>
-</form>
+  <form id="checkoutForm">
+    <input id="name" placeholder="الاسم الكامل" required>
+    <input id="phone" placeholder="رقم الهاتف" required>
+    <input id="city" placeholder="المدينة" required>
+    <input id="address" placeholder="العنوان الكامل" required>
+    <button type="submit">تأكيد الطلب</button>
+  </form>
 
 </div>
 
-<script>
-
-// 🔥 رابط Google Apps Script الجديد
-const API_URL = "https://script.google.com/macros/s/AKfycbxyCmZ7W1k-xW361TttJ2SZT1QoYjA16TGy4Negnq2VkVBKS25E-pbTF1tTBuPefXvDcg/exec";
-
-// 📦 جلب الطلب من localStorage
-const order = JSON.parse(localStorage.getItem("order"));
-
-if(!order){
-  document.body.innerHTML = "<h2 style='margin-top:150px'>لا يوجد طلب نشط</h2>";
-}else{
-
-  // عرض ملخص الطلب
-  document.getElementById("summaryBox").innerHTML = `
-    <div class="summary">
-      <p>المنتج: ${order.name}</p>
-      <p>المقاس: ${order.size}</p>
-      <p>اللون: ${order.color}</p>
-      <p>الكمية: ${order.quantity}</p>
-      <p class="total">المجموع: ${order.price * order.quantity} MAD</p>
-    </div>
-  `;
-
-}
-
-// 🚀 عند إرسال الطلب
-document.getElementById("orderForm").addEventListener("submit", async function(e){
-
-  e.preventDefault();
-
-  if(!order){
-    alert("لا يوجد طلب");
-    return;
-  }
-
-  const btn = document.getElementById("submitBtn");
-  btn.classList.add("loading");
-  btn.innerText = "جارٍ الإرسال...";
-
-  const payload = {
-    name: this.name.value,
-    phone: this.phone.value,
-    city: this.city.value,
-    address: this.address.value,
-    product: order.name,
-    size: order.size,
-    color: order.color,
-    quantity: order.quantity,
-    total: order.price * order.quantity
-  };
-
-  try{
-
-  await fetch(API_URL,{
-    method:"POST",
-    body: JSON.stringify(payload)
-  });
-
-  localStorage.removeItem("order");
-  window.location.href="thankyou.html";
-
-}catch(error){
-  alert("حدث خطأ أثناء إرسال الطلب");
-  console.error(error);
-
-  btn.classList.remove("loading");
-  btn.innerText="تأكيد الطلب";
-}
-
-    // حذف الطلب من التخزين
-    localStorage.removeItem("order");
-
-    // الانتقال لصفحة الشكر
-    window.location.href="thankyou.html";
-
-  }catch(error){
-
-    alert("حدث خطأ أثناء إرسال الطلب");
-    console.error(error);
-
-    btn.classList.remove("loading");
-    btn.innerText="تأكيد الطلب";
-  }
-
-});
-</script>
-
+<script src="assets/js/main.js"></script>
 </body>
 </html>
