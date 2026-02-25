@@ -1,44 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WDZ Hoodie</title>
+<title>متجر WDZ</title>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<header class="navbar">
-  <div class="logo">WDZ</div>
-  <a href="checkout.html">Cart (<span id="cart-count">0</span>)</a>
+<header class="header">
+  <div>WDZ</div>
+  <a href="checkout.html">السلة (<span id="cart-count">0</span>)</a>
 </header>
 
-<section class="product-page">
-  <img src="assets/img/hoodie.jpg" alt="Hoodie">
+<section class="product">
+  <img src="hoodie.jpg" alt="">
+  <h2 id="product-name">هودي WDZ الفاخر</h2>
+  <p class="price" data-price="599">599 درهم</p>
 
-  <div class="product-info">
-    <h1>WDZ Premium Hoodie</h1>
-    <p class="price" data-price="599">599 MAD</p>
+  <select id="size">
+    <option>S</option>
+    <option>M</option>
+    <option>L</option>
+    <option>XL</option>
+  </select>
 
-    <label>Size</label>
-    <select id="size">
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
+  <select id="color">
+    <option>أسود</option>
+    <option>أبيض</option>
+  </select>
 
-    <label>Color</label>
-    <select id="color">
-      <option>Black</option>
-      <option>White</option>
-    </select>
+  <input type="number" id="quantity" value="1" min="1">
 
-    <label>Quantity</label>
-    <input type="number" id="quantity" value="1" min="1">
-
-    <button class="btn" id="add-to-cart">Add to Cart</button>
-  </div>
+  <button id="add-to-cart" class="btn">أضف إلى السلة</button>
 </section>
 
 <script src="assets/js/script.js"></script>
