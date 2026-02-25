@@ -1,25 +1,10 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbxyCmZ7W1k-xW361TttJ2SZT1QoYjA16TGy4Negnq2VkVBKS25E-pbTF1tTBuPefXvDcg/exec";
 
-// شراء المنتج
-function buyNow() {
-  const product = {
-    name: "WDZ Hoodie",
-    price: 299,
-    size: document.getElementById("size").value,
-    color: document.getElementById("color").value,
-    quantity: document.getElementById("quantity").value
-  };
-
-  localStorage.setItem("selectedProduct", JSON.stringify(product));
-  window.location.href = "checkout.html";
-}
-
-// عند تحميل الصفحة
 document.addEventListener("DOMContentLoaded", function () {
 
   const order = JSON.parse(localStorage.getItem("selectedProduct"));
 
-  // عرض الملخص
+  // عرض ملخص الطلب
   if (document.getElementById("summaryBox") && order) {
     document.getElementById("summaryBox").innerHTML = `
       <p>المنتج: ${order.name}</p>
@@ -49,14 +34,18 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       try {
+
         const response = await fetch(API_URL, {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
           body: JSON.stringify(data)
         });
 
-        const result = await response.text();
+        const result = await response.json();
 
-        if (result === "success") {
+        if (result.result === "success") {
           localStorage.removeItem("selectedProduct");
           window.location.href = "thankyou.html";
         } else {
@@ -65,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       } catch (error) {
         alert("فشل الاتصال بالخادم");
+        console.error(error);
       }
     });
   }
