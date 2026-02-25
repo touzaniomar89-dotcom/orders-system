@@ -3,49 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WDZ | المنتج</title>
-<style>
-body{margin:0;background:#0b0b0b;color:#fff;font-family:Montserrat;text-align:center}
-.card{margin-top:100px}
-button{padding:15px 40px;background:#00ff66;border:none;font-weight:800;border-radius:10px}
-select{padding:10px;margin:10px}
-</style>
+<title>Product</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="card">
-<h1>WDZ Premium Hoodie</h1>
-<p>399 MAD</p>
+<div class="product-container">
+  <h2>WDZ Hoodie</h2>
+  <p class="price">299 MAD</p>
 
-<select id="size">
-<option>S</option>
-<option>M</option>
-<option>L</option>
-<option>XL</option>
-</select>
+  <label>المقاس:</label>
+  <select id="size">
+    <option>S</option>
+    <option>M</option>
+    <option>L</option>
+    <option>XL</option>
+  </select>
 
-<select id="color">
-<option>Black</option>
-<option>Green</option>
-</select>
+  <label>اللون:</label>
+  <select id="color">
+    <option>Black</option>
+    <option>Green</option>
+  </select>
 
-<br><br>
-<button onclick="addToCart()">اشتري الآن</button>
+  <button onclick="buyNow()">اشتر الآن</button>
 </div>
 
-<script>
-function addToCart(){
-const order = {
-name:"WDZ Premium Hoodie",
-price:399,
-size:document.getElementById("size").value,
-color:document.getElementById("color").value,
-quantity:1
-};
-localStorage.setItem("order",JSON.stringify(order));
-window.location.href="checkout.html";
-}
-</script>
-
+<script src="main.js"></script>
 </body>
 </html>
