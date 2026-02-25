@@ -1,7 +1,3 @@
-// ===============================
-// WDZ ORDER SYSTEM
-// ===============================
-
 async function submitOrder() {
 
   const orderData = {
@@ -10,9 +6,9 @@ async function submitOrder() {
     city: document.getElementById("city").value,
     address: document.getElementById("address").value,
     product: localStorage.getItem("selectedProduct") || "WDZ Product",
-    size: document.getElementById("size").value,
-    color: document.getElementById("color").value,
-    quantity: document.getElementById("quantity").value,
+    size: "Default",
+    color: "Default",
+    quantity: 1,
     total: localStorage.getItem("totalPrice") || 0
   };
 
@@ -29,18 +25,12 @@ async function submitOrder() {
     const result = await response.json();
 
     if (result.success) {
-
-      localStorage.removeItem("selectedProduct");
-      localStorage.removeItem("totalPrice");
-
       window.location.href = "thankyou.html";
-
     } else {
-      alert("Error sending order.");
+      alert("Error sending order");
     }
 
   } catch (error) {
-    alert("Connection error.");
-    console.error(error);
+    alert("Connection error");
   }
 }
