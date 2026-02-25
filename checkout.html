@@ -1,45 +1,38 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout</title>
-<link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الطلب - WDZ</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
+    <header>
+        <h1>WDZ</h1>
+    </header>
+    <main class="checkout-page">
+        <h2>مراجعة الطلب</h2>
+        <div id="order-summary" class="summary"></div>
 
-<div class="container">
+        <h2>معلومات الشحن</h2>
+        <form id="checkout-form">
+            <label for="name">الاسم الكامل</label>
+            <input type="text" id="name" required>
 
-<h2>ملخص الطلب</h2>
-<div id="summaryBox"></div>
+            <label for="phone">رقم الجوال</label>
+            <input type="tel" id="phone" required>
 
-<h2>معلومات الزبون</h2>
+            <label for="city">المدينة</label>
+            <input type="text" id="city" required>
 
-<form id="checkoutForm">
+            <label for="address">العنوان</label>
+            <textarea id="address" required></textarea>
 
-<input id="name" placeholder="الاسم الكامل" required>
-<input id="phone" placeholder="رقم الهاتف" required>
-<input id="city" placeholder="المدينة" required>
-<input id="address" placeholder="العنوان الكامل" required>
+            <div id="form-error" class="error" style="display: none;"></div>
 
-<button type="submit">تأكيد الطلب</button>
-
-</form>
-
-</div>
-
-<script src="assets/js/main.js"></script>
-
-<script>
-
-// منع الريفريش وربط الفورم بالـ submitOrder
-document.getElementById("checkoutForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  submitOrder();
-});
-
-</script>
-
+            <button type="submit" class="btn">تأكيد الطلب</button>
+        </form>
+    </main>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
